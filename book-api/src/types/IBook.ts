@@ -1,6 +1,6 @@
-import { ObjectId }  from "mongoose";
+import { Types }  from "mongoose";
 
-export interface IBooks {
+export interface IBook {
     
     title: string;
     description: string;
@@ -8,6 +8,5 @@ export interface IBooks {
     genres: string[];
     image: string;
     published_year: number;
-    reviews: ObjectId[];
-
+    reviews: Types.ObjectId[];
 }

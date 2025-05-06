@@ -7,8 +7,8 @@ import mongoose from 'mongoose';
 
 const app = express();
 
-// // Middleware
-// app.use(express.json()); // This specific middleware parses JSON string to Javascript Object
+// Middleware
+app.use(express.json()); // This specific middleware parses JSON string to Javascript Object
 // app.use(cookieParser()); // This specific middleware parses Cookies
 // app.use(cors({
 //   origin: "*",         // This makes the Express server except request from other domains
@@ -20,8 +20,8 @@ const app = express();
 // import userRouter from './routes/users'
 // app.use('/users', userRouter)
 
-// import bookRouter from './routes/books'
-// app.use('/books', bookRouter)
+import bookRouter from './routes/books'
+app.use('/books', bookRouter)
 
 // import reviewRouter from './routes/reviews'
 // app.use('/reviews', reviewRouter)
