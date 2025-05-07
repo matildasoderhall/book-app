@@ -14,8 +14,8 @@ router.get('/', fetchAllBooks)
 router.get('/:id', fetchBook)
 
 // Password protected
-router.post('/', createBook) // Need to add TOKEN / auth middleware
-router.patch('/:id', updateBook) // Need to add TOKEN / auth middleware
-router.delete('/:id', deleteBook) // Need to add TOKEN / auth middleware
+router.post('/', verifyAccessToken, createBook) // Need to add TOKEN / auth middleware
+router.patch('/:id', verifyAccessToken, updateBook) // Need to add TOKEN / auth middleware
+router.delete('/:id', verifyAccessToken, deleteBook) // Need to add TOKEN / auth middleware
 
 export default router;
