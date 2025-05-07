@@ -36,4 +36,52 @@ export const register = async (req: Request, res: Response) => {
     }
 };
 
+export const login = async (req: Request, res: Response) => {
+    const {username, password} = req.body;
+
+    if (!username || !password) {
+        res.status(400).json({message: 'Username and password are required'})
+        return;
+    }
+
+    try {
+        const user = await Users.findOne({ username })
+
+        if (!user) {
+            res.status(401).json({message: 'Username is incorrect'})
+            return;
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+   
+        if (!isPasswordValid) {
+            res.status(401).json({message: 'Password is incorrect'})
+        }
+        const accessToken = jwt.sign(
+            {username}, 
+            process.env.JWT_SECRET || "", 
+            {expiresIn: "7d"}
+        );
+
+        res.cookie('accessToken', accessToken, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'none',
+            maxAge: 1000 * 60 * 60 * 24 * 7
+        })
+    
+        res.status(200).json({
+            message: 'You are logged in', 
+            is_admin: user.is_admin,
+            username: user.username
+        });
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : 'Unkown error'
+        res.status(500).json({error: message})
+    }
+
+    
+
+};
+
 
