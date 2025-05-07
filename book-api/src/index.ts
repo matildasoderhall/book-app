@@ -20,8 +20,8 @@ app.use(cors({
 import userRouter from './routes/users'
 app.use('/users', userRouter)
 
-// import bookRouter from './routes/books'
-// app.use('/books', bookRouter)
+import bookRouter from './routes/books'
+app.use('/books', bookRouter)
 
 // import reviewRouter from './routes/reviews'
 // app.use('/reviews', reviewRouter)
