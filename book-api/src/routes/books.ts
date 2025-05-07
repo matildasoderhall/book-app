@@ -1,20 +1,20 @@
 import express from 'express';
 import { 
-  // createBook, 
+  createBook, 
   // deleteBook, 
   fetchAllBooks, 
-  // fetchBook, 
+  fetchBook, 
   //updateBook 
   } from '../controllers/booksController';
-
+import { verifyAccesToken } from '../middleware/verifyToken';
 
 const router = express.Router()
 
 router.get('/', fetchAllBooks)
-// router.get('/:id', fetchBook)
+router.get('/:id', fetchBook)
 
 
-// router.post('/', verifyAccessToken, createBook) // Need to add TOKEN / auth middleware
+router.post('/', createBook) // Need to add TOKEN / auth middleware
 // router.patch('/:id',verifyAccessToken, updateBook) // Need to add TOKEN / auth middleware
 // router.delete('/:id',verifyAccessToken, deleteBook) // Need to add TOKEN / auth middleware
 
