@@ -36,3 +36,30 @@ export const fetchReview = async (req: Request, res: Response) => {
       res.status(500).json({error: message})
     };
   };
+
+
+export const createReview = async (req: Request, res: Response) => {
+    const { name, content, rating } = req.body;
+    
+    //makes sure name, content and rating is entered
+    if (name === undefined || content === undefined || rating === undefined) {
+      res.status(400).json({ error: "Name, content and rating are required" });
+      return;
+    }
+    try {
+      const newReview = new Review({
+        name,
+        content,
+        rating
+      });
+  
+      const savedReview = await newReview.save();
+  
+      res.status(201).json({ message: "Review created", todo: savedReview });
+      
+    } catch (error) {
+      //if an unexpected error occurs
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ error: message });
+    }
+  };

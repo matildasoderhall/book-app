@@ -1,10 +1,10 @@
 import express from 'express';
 import { 
-//   createReview, 
-//   deleteReview, 
-  fetchAllReviews, 
-  fetchReview, 
-//   updateReview 
+    fetchAllReviews, 
+    fetchReview, 
+    createReview, 
+    //   updateReview 
+    //   deleteReview, 
 } 
   from "../controllers/reviewsController"
 
@@ -13,9 +13,9 @@ const router = express.Router()
 
 router.get('/', fetchAllReviews)
 router.get('/:id', fetchReview)
+router.post('/', createReview)
 
 // The 3 endpoints below are protected
-// router.post('/', verifyAccessToken, createReview)
 // router.patch('/:id',verifyAccessToken, updateReview)
 // router.delete('/:id',verifyAccessToken, deleteReview)
 
