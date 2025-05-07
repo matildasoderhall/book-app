@@ -79,9 +79,11 @@ export const login = async (req: Request, res: Response) => {
         const message = error instanceof Error ? error.message : 'Unkown error'
         res.status(500).json({error: message})
     }
+};
 
-    
-
+export const logout = async (_: Request, res: Response) => {
+    res.clearCookie('accessToken');
+    res.json({message: 'You have been logged out'})
 };
 
 
