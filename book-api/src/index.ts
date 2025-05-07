@@ -33,7 +33,6 @@ app.use('/books', bookRouter)
 // Connect To DB
 mongoose.connect(process.env.MONGODB_URL || "");
 
-
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
