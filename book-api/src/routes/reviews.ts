@@ -3,7 +3,7 @@ import {
 //   createReview, 
 //   deleteReview, 
   fetchAllReviews, 
-//   fetchReview, 
+  fetchReview, 
 //   updateReview 
 } 
   from "../controllers/reviewsController"
@@ -12,7 +12,7 @@ import {
 const router = express.Router()
 
 router.get('/', fetchAllReviews)
-// router.get('/:id', fetchReview)
+router.get('/:id', fetchReview)
 
 // The 3 endpoints below are protected
 // router.post('/', verifyAccessToken, createReview)
