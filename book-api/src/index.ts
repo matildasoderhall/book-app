@@ -9,16 +9,16 @@ const app = express();
 
 // Middleware
 app.use(express.json()); // This specific middleware parses JSON string to Javascript Object
-// app.use(cookieParser()); // This specific middleware parses Cookies
-// app.use(cors({
-//   origin: "*",         // This makes the Express server except request from other domains
-//   credentials: true    // Allows cookies sent to this API
-// }));        
+app.use(cookieParser()); // This specific middleware parses Cookies
+app.use(cors({
+  origin: "*",         // This makes the Express server except request from other domains
+  credentials: true    // Allows cookies sent to this API
+}));        
 
 
 // // Routes
-// import userRouter from './routes/users'
-// app.use('/users', userRouter)
+import userRouter from './routes/users'
+app.use('/users', userRouter)
 
 import bookRouter from './routes/books'
 app.use('/books', bookRouter)
@@ -26,8 +26,8 @@ app.use('/books', bookRouter)
 // import reviewRouter from './routes/reviews'
 // app.use('/reviews', reviewRouter)
 
-// import authRouter from "./routes/auth"
-// app.use('/auth', authRouter)
+import authRouter from "./routes/auth"
+app.use('/auth', authRouter)
 
 
 // Connect To DB
