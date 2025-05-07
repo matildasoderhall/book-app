@@ -22,14 +22,14 @@ export const fetchReview = async (req: Request, res: Response) => {
 
     };
     try {
-      const todo = await Reviews.findById(id)
+      const review = await Reviews.findById(id)
       
-      if (!todo) {
-        res.status(404).json({message: 'Todo not found'})
+      if (!review) {
+        res.status(404).json({message: 'Review not found'})
         return;
       }
 
-      res.json(todo);
+      res.json(review);
 
     } catch(error: unknown) {
       const message = error  instanceof Error ? error.message : 'Unknown error'
@@ -55,7 +55,7 @@ export const createReview = async (req: Request, res: Response) => {
   
       const savedReview = await newReview.save();
   
-      res.status(201).json({ message: "Review created", todo: savedReview });
+      res.status(201).json({ message: "Review created", review: savedReview });
       
     } catch (error) {
       //if an unexpected error occurs
@@ -63,3 +63,43 @@ export const createReview = async (req: Request, res: Response) => {
       res.status(500).json({ error: message });
     }
   };
+
+export const updateReview = async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const { name, content, rating } = req.body;
+
+    if (name === undefined || content === undefined || rating === undefined) {
+        res.status(400).json({ error: "Name, content and rating are required"});
+        return;
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ error: "Invalid ID format"})
+    }
+
+    try {
+        const updatedReview = await Review.findByIdAndUpdate(
+            id,
+            { name, content, rating },
+            { new: true, runValidators: true} //runValidators makes sure the Schema is followed, 
+            //which in this case means that the user only is allowed to update the rating between 1-5
+        );
+        if (!updatedReview) {
+            return res.status(404).json({ error: "Review not found"});
+        };
+
+        res.status(200).json({ message: "Review updated", review: updatedReview})
+
+    } catch (error: unknown) {
+
+        //if the error is because of the fact that the rating is not between 1-5,
+        //throw a 400 status code instead of 500
+        if (error instanceof mongoose.Error.ValidationError) {
+            return res.status(400).json({ error: error.message });
+          }
+
+        const message = error instanceof Error ? error.message : "Unknown error";
+        res.status(500).json({ error: message});
+    }
+
+}

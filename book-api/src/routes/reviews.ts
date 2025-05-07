@@ -3,7 +3,7 @@ import {
     fetchAllReviews, 
     fetchReview, 
     createReview, 
-    //   updateReview 
+    updateReview 
     //   deleteReview, 
 } 
   from "../controllers/reviewsController"
@@ -16,7 +16,7 @@ router.get('/:id', fetchReview)
 router.post('/', createReview)
 
 // The 3 endpoints below are protected
-// router.patch('/:id',verifyAccessToken, updateReview)
+router.patch('/:id', updateReview)
 // router.delete('/:id',verifyAccessToken, deleteReview)
 
 export default router;
