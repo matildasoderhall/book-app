@@ -101,5 +101,27 @@ export const updateReview = async (req: Request, res: Response) => {
         const message = error instanceof Error ? error.message : "Unknown error";
         res.status(500).json({ error: message});
     }
+};
 
-}
+export const deleteReview = async (req: Request, res: Response) => {
+    const id = req.params.id;
+  
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "Invalid ID format" });
+    }
+  
+    try {
+      const deletedReview = await Review.findByIdAndDelete(id)
+      
+  
+      if (!deletedReview) {
+        return res.status(404).json({ message: "Review not found" });
+      }
+  
+      res.status(200).json({message: "Review deleted", review: deletedReview})
+    } catch (error: unknown) {
+      const message = error  instanceof Error ? error.message : 'Unknown error'
+      res.status(500).json({error: message})
+    }
+  };
+  
