@@ -26,6 +26,7 @@ export const register = async (req: Request, res: Response) => {
             password: hashedPassword,
             is_admin: is_admin || false,
         });
+        
 
         await newUser.save();
 
@@ -52,10 +53,21 @@ export const login = async (req: Request, res: Response) => {
             return;
         }
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
-        const isPlainMatch = password === user.password;
+        const isHashed = user.password.startsWith('$2b$');
 
-        if (!isPasswordValid && !isPlainMatch) {
+        if (!isHashed) {
+            console.warn(`Plaintext password found for user "${username}". Hashing it now.`);
+            
+            const hashed = await bcrypt.hash(user.password, 10);
+            user.password = hashed;
+
+            await user.save();
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+
+        if (!isPasswordValid) {
             res.status(401).json({ message: 'Password is incorrect' });
             return;
         }
