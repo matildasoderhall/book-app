@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Review from '../models/Reviews';
 import Reviews from "../models/Reviews";
 import mongoose from "mongoose";
+import Book from "../models/Book";
 
 export const fetchAllReviews = async (_: Request, res: Response) => {
     try {
@@ -39,23 +40,35 @@ export const fetchReview = async (req: Request, res: Response) => {
 
 
 export const createReview = async (req: Request, res: Response) => {
-    const { name, content, rating } = req.body;
+    const { name, content, rating, bookId } = req.body;
     
     //makes sure name, content and rating is entered
-    if (name === undefined || content === undefined || rating === undefined) {
-      res.status(400).json({ error: "Name, content and rating are required" });
+    if (name === undefined || content === undefined || rating === undefined || bookId === undefined) {
+      res.status(400).json({ error: "Name, content, rating and bookId are required" });
       return;
     }
+    //checks valid bookId format
+    if (!mongoose.Types.ObjectId.isValid(bookId)) {
+        return res.status(400).json({ error: "Invalid bookId format" });
+      }
+
     try {
+        const book = await Book.findById(bookId);
+        if (!book) return res.status(404).json({ error: "Book not found" });
+
       const newReview = new Review({
         name,
         content,
-        rating
+        rating,
+        book: bookId
       });
   
       const savedReview = await newReview.save();
+
+      book.reviews.push(savedReview._id);
+      await book.save();
   
-      res.status(201).json({ message: "Review created", review: savedReview });
+      res.status(201).json({ message: "Review created and linked to book", review: savedReview });
       
     } catch (error) {
       //if an unexpected error occurs
@@ -111,14 +124,20 @@ export const deleteReview = async (req: Request, res: Response) => {
     }
   
     try {
-      const deletedReview = await Review.findByIdAndDelete(id)
+      const review = await Review.findById(id)
       
   
-      if (!deletedReview) {
+      if (!review) {
         return res.status(404).json({ message: "Review not found" });
-      }
+      };
+
+      await Book.findByIdAndUpdate(review.book, {
+        $pull: { reviews: review._id }
+      });
+
+      await Review.findByIdAndDelete(id);
   
-      res.status(200).json({message: "Review deleted", review: deletedReview})
+      res.status(200).json({message: "Review deleted and removed from book", review})
     } catch (error: unknown) {
       const message = error  instanceof Error ? error.message : 'Unknown error'
       res.status(500).json({error: message})

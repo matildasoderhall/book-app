@@ -21,8 +21,13 @@ const ReviewSchema = new Schema<IReview>({
   created_at: {
     type: Date,
     default: Date.now
+  },
+  book: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Book',
+    required: true
   }
 });
 
 
-export default mongoose.model('Reviews', ReviewSchema);
+export default mongoose.model('Review', ReviewSchema);
