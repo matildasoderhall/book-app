@@ -60,7 +60,7 @@ export const login = async (req: Request, res: Response) => {
             return;
         }
         const accessToken = jwt.sign(
-            {username}, 
+            {username: user.username, is_admin: user.is_admin}, 
             process.env.JWT_SECRET || "", 
             {expiresIn: "7d"}
         );
