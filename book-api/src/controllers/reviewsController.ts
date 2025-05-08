@@ -124,14 +124,20 @@ export const deleteReview = async (req: Request, res: Response) => {
     }
   
     try {
-      const deletedReview = await Review.findByIdAndDelete(id)
+      const review = await Review.findById(id)
       
   
-      if (!deletedReview) {
+      if (!review) {
         return res.status(404).json({ message: "Review not found" });
-      }
+      };
+
+      await Book.findByIdAndUpdate(review.book, {
+        $pull: { reviews: review._id }
+      });
+
+      await Review.findByIdAndDelete(id);
   
-      res.status(200).json({message: "Review deleted", review: deletedReview})
+      res.status(200).json({message: "Review deleted and removed from book", review})
     } catch (error: unknown) {
       const message = error  instanceof Error ? error.message : 'Unknown error'
       res.status(500).json({error: message})
