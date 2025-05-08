@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <Header title="Home"/>
+  <Header title="Books"/>
 </template>
