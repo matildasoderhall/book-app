@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <MainHeader title="Books"/>
+  <MainHeader title="Login"/>
 </template>
