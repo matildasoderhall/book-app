@@ -1,18 +1,36 @@
 <script setup lang="ts">
+import { defineProps, defineEmits } from 'vue';
+
 const props = defineProps<{
+  modelValue: string;
 	placeholder: string;
-	type?: 'text' | 'radio' | 'checkbox' | 'date';
+	type?: 'text' | 'radio' | 'checkbox' | 'date' | 'password';
 }>();
+
+const emit = defineEmits<{
+  (event: 'update:modelValue', value: string): void;
+}>();
+
+const onInput = (event: Event) => {
+  const target = event.target as HTMLInplutElement;
+  emit('update:modelValue', target.value);
+};
 
 </script>
 
 <template>
-  <input :type="type" :placeholder="placeholder" />
+  <input
+  :type="type"
+  :placeholder="placeholder"
+  :value="modelValue"
+  @input="onInput"
+  />
 </template>
 
 <style lang="scss" scoped>
 input[type="text"],
-input[type="date"] {
+input[type="date"],
+input[type="password"] {
   font-family: $primary-font;
   width: 18rem;
   border: solid 1px $delft-blue-color;
