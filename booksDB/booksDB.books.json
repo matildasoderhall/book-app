@@ -1,0 +1,62 @@
+[{
+  "_id": {
+    "$oid": "681c9ad59137e6881f559a8a"
+  },
+  "title": "Solaris",
+  "description": "A haunting exploration of memory, grief, and alien intelligence",
+  "author": "Stanisław Lem",
+  "genres": [
+    "ScienceFiction",
+    "Philosophical"
+  ],
+  "image": "solaris.jpg",
+  "published_year": 1961,
+  "reviews": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681c9aeb9137e6881f559a8c"
+  },
+  "title": "Kafka on the Shore",
+  "description": "A surreal coming-of-age story that blends dreams, memory, and fate.",
+  "author": "Haruki Murakami",
+  "genres": [
+    "fiction"
+  ],
+  "image": "kafka.jpg",
+  "published_year": 2002,
+  "reviews": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681c9af49137e6881f559a8e"
+  },
+  "title": "Neuromancer",
+  "description": "A cyberpunk classic about a washed-up hacker hired for one last job.",
+  "author": "William Gibson",
+  "genres": [
+    "science fiction",
+    "cyberpunk"
+  ],
+  "image": "neuromancer.jpg",
+  "published_year": 1984,
+  "reviews": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681c9b009137e6881f559a92"
+  },
+  "title": "Educated",
+  "description": "A memoir about a woman who escapes a survivalist family to earn a PhD from Cambridge.",
+  "author": "Tara Westover",
+  "genres": [
+    "memoir"
+  ],
+  "image": "educated.jpg",
+  "published_year": 2018,
+  "reviews": [],
+  "__v": 0
+}]
