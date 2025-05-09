@@ -13,13 +13,14 @@ const props = defineProps<{
 
 <style lang="scss" scoped>
 button {
+  width: 10rem;
   background-color: $delft-blue-color;
   color: $eggshell-color;
   font-family: $primary-font;
-  font-size: 2rem;
+  font-size: 1.2rem;
   border: solid 1px $jet-color;
   border-radius: 8px;
-  padding-inline: 3rem;
+  padding-block: 0.5rem;
   filter: drop-shadow(-3px 3px 3px rgba(0, 0, 0, 0.25));
   cursor: pointer;
 }
