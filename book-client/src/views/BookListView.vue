@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import Header from "@/components/Header.vue";
+  import MainHeader from "@/components/MainHeader.vue";
 </script>
 
 <template>
-  <Header title="Books"/>
+  <MainHeader title="Books"/>
 </template>
