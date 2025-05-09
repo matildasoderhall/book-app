@@ -6,16 +6,26 @@
 
 <template>
   <MainHeader title="Login"/>
-  <form>
-    <div class="login-container">
-      <InputField type="text" placeholder="Username"/>
-      <InputField type="text" placeholder="Password"/>
-    </div>
-    <PrimaryButton type="submit" buttonLabel="Login"/>
-  </form>
+  <main>
+    <form>
+      <div class="login-container">
+        <InputField type="text" placeholder="Username"/>
+        <InputField type="text" placeholder="Password"/>
+        <a class="register">Register</a>
+      </div>
+      <PrimaryButton type="submit" buttonLabel="Login"/>
+    </form>
+  </main>
 </template>
 
 <style lang="scss" scoped>
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 300px);
+}
 
 form {
   display: flex;
@@ -23,9 +33,27 @@ form {
   align-items: center;
   gap: 1.5rem;
 }
+
 .login-container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+
+  :not(:first-child) {
+    margin-top: 1rem;
+  }
+
+  :nth-child(3) {
+    margin-top: 0.2rem;
+  }
+}
+
+.register {
+  align-self: flex-end;
+  text-decoration: underline;
+  font-family: $secondary-font;
+  cursor: pointer;
+  &:hover {
+    color: $brown-sugar-color;
+  }
 }
 </style>
