@@ -102,7 +102,7 @@
           font-weight: bold;
 
           &:hover {
-            color: #ff6d33;
+            color: #be6e46;
             text-decoration: underline;
           }
         }
