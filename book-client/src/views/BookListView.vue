@@ -28,7 +28,7 @@
 
 
 <template>
-  <div>
+  <div class="page-wrapper">
     <MainHeader title="Book List"/>
 
     <form id="" @submit.prevent="searchBooks">
@@ -36,21 +36,79 @@
       <button>Submit</button>
     </form>
 
-    <section id="books" v-for="book in books" :key="book.id">
-      <article>
-        <div>
-           <h3> {{ book.title }} by {{ book.author }} </h3>
-           <p> Published {{ book.published_year }}. <br>
-            Genres: {{ book.genres[0] }}, {{ book.genres[1] }} </p>
-        </div>
-
-        <div class="book-link">
-          <RouterLink :to="`/books/${book._id}`">View book</RouterLink>
-        </div>
-
-      </article>
-    </section>
+    <section id="books">
+  <article v-for="book in books" :key="book.id" class="book-card">
+    <img :src="book.image" alt="Book cover" loading="lazy" width="200"/>
+    <div class="book-content">
+      <h3>{{ book.title }} by {{ book.author }}</h3>
+      <p>
+        Published {{ book.published_year }}. <br />
+        Genres: {{ book.genres.join(',  ') }}
+      </p>
+      <div class="book-link">
+        <RouterLink :to="`/books/${book._id}`">View book</RouterLink>
+      </div>
+    </div>
+  </article>
+</section>
 
 
   </div>
 </template>
+
+
+<style lang="scss" scoped>
+
+.page-wrapper {
+	margin: 2rem;
+}
+
+#books {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  .book-card {
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .book-content {
+      padding: 1rem;
+
+      h3 {
+        margin-top: 0;
+        font-size: 1.1rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        color: #3d405b;
+      }
+
+      .book-link {
+        margin-top: 0.5rem;
+
+        a {
+          color: #3d405b;
+          text-decoration: none;
+          font-weight: bold;
+
+          &:hover {
+            color: #ff6d33;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+</style>

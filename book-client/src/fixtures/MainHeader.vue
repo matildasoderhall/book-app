@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import logo from "@/assets/logo.svg"
+  import logo from "@/assets/StoryStack_delftblue.svg";
   defineProps({
     title: {
       type: String,
