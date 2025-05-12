@@ -11,14 +11,20 @@
 <template>
   <header>
     <div class="main-nav-links">
-       <RouterLink to="/">
+      <RouterLink to="/">
         <img class="logo" :src="logo" alt="Vue logo" height="30">
       </RouterLink>
+
       <nav>
       <RouterLink to="/admin/users" class="router-link">Admin</RouterLink>
       <RouterLink to="/login" class="router-link">Login/Register</RouterLink>
       </nav>
     </div>
+    <nav class="admin-nav-links">
+      <RouterLink to="/admin/users" class="router-link">Users</RouterLink>
+      <RouterLink to="/admin-books" class="router-link">Books</RouterLink>
+      <RouterLink to="/admin-create-book" class="router-link">Create Books</RouterLink>
+    </nav>
     <h1 class="green">{{ title }}</h1>
   </header>
 </template>
@@ -43,6 +49,20 @@
     text-decoration: none;
     color: $eggshell-color;
   }
+}
+
+.admin-nav-links {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  column-gap: 20px;
+  margin-inline: 20px;
+  margin-top: 10px;
+  .router-link {
+    grid-column: span 2;
+    color: $delft-blue-color;
+    font-weight: 700;
+  }
+
 }
 
 h1 {
