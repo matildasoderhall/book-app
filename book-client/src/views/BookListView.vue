@@ -2,9 +2,10 @@
   import MainHeader from "@/fixtures/MainHeader.vue";
   import { onMounted, ref } from "vue";
   import { RouterLink } from "vue-router";
+  import { IBook } from '@/types/IBooks'
 
   const API_URL = import.meta.env.VITE_API_URL
-  const books = ref([]);
+  const books = ref<IBook[]>([]);
   const searchQuery = ref('');
 
   onMounted(async () => {
@@ -30,11 +31,6 @@
 <template>
   <div class="page-wrapper">
     <MainHeader title="Book List"/>
-
-    <form id="" @submit.prevent="searchBooks">
-      <input type="text" placeholder="Search" v-model="searchQuery">
-      <button>Submit</button>
-    </form>
 
     <section id="books">
   <article v-for="book in books" :key="book.id" class="book-card">
