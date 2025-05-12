@@ -19,21 +19,43 @@
 
 
 <template>
-    <section>
+    <section class="book-section">
         <img :src="image" class="book-cover">
-        <h3>{{ title }}</h3>
-        <p>{{ author }}</p>
-        <p>{{ published_year }}</p>
-        <p>{{ description }}</p>
-        <p>{{ genres.join(', ') }} </p>
+        <div class="text-section">
+            <h3>{{ title }}</h3>
+            <span>by {{ author }}, {{ published_year }}</span>
+            <p class="description">{{ description }}</p>
+            <p>Genres: {{ genres.join(', ') }} </p>
+        </div>
     </section>
 </template>
 
 <style lang="scss" scoped>
 body{ 
-    .book-cover {
-        width: 80px;
-        height: 120px;
+    .book-section {
+        background-color: white;
+        padding: 0.5rem;
+        display: flex;
+        margin: 2rem;
+        color: $jet-color;
+        border-radius: 4px;
+
+        .book-cover {
+            width: auto;
+            height:500px;
+        }
+        
+        .text-section {
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+            padding-left: 2rem;
+        }
+
+        .description {
+            font-family: $secondary-font;
+            font-style: italic;
+        }
     }
 }
 </style>
