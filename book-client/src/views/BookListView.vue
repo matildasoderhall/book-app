@@ -14,7 +14,6 @@
     try {
       const response = await fetch(API_URL + 'books');
       const data = await response.json();
-      console.log(data)
       books.value = data;
 
     } catch (error) {
