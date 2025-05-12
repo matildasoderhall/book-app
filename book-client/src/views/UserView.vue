@@ -20,8 +20,17 @@
 
 <template>
   <AdminHeader title="Users"/>
-  <DataTable
-  :columns="columns"
-  :rows="rows"
-  />
+  <div class="table-container">
+    <DataTable
+      :columns="columns"
+      :rows="rows"
+    />
+  </div>
+
 </template>
+
+<style lang="scss" scoped>
+.table-container {
+  padding-inline: 3.5rem;
+}
+</style>
