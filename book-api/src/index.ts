@@ -23,8 +23,8 @@ app.use('/users', userRouter)
 import bookRouter from './routes/books'
 app.use('/books', bookRouter)
 
-// import reviewRouter from './routes/reviews'
-// app.use('/reviews', reviewRouter)
+import reviewRouter from './routes/reviews'
+app.use('/reviews', reviewRouter)
 
 import authRouter from "./routes/auth"
 app.use('/auth', authRouter)
