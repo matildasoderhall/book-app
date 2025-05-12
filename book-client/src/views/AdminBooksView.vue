@@ -2,9 +2,12 @@
   import MainHeader from "@/fixtures/MainHeader.vue";
   import { onMounted, ref } from "vue";
   import { RouterLink } from "vue-router";
+    import { IBook } from '@/types/IBooks'
+
+  const books = ref<IBook[]>([]);
 
   const API_URL = import.meta.env.VITE_API_URL
-  const books = ref([]);
+
   const searchQuery = ref('');
 
   onMounted(async () => {
