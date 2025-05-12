@@ -47,7 +47,7 @@
       <div class="login-container">
         <InputField type="text" placeholder="Username" v-model="username"/>
         <InputField type="password" placeholder="Password" v-model="password" />
-        <a class="register">Register</a>
+        <RouterLink to="/register" class="register">New user?</RouterLink>
       </div>
       <PrimaryButton type="submit" buttonLabel="Login"/>
     </form>
@@ -87,6 +87,7 @@ form {
   align-self: flex-end;
   text-decoration: underline;
   font-family: $secondary-font;
+  color: $delft-blue-color;
   cursor: pointer;
   &:hover {
     color: $brown-sugar-color;
