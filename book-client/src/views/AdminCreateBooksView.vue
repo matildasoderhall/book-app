@@ -19,17 +19,19 @@ const genreInput = ref('');
 
 const createBook = async () => {
 
-  newBook.value.genres = genreInput.value
-    .split(',')
-    .map(g => g.trim())          // remove extra spaces
-    .filter(g => g !== '');      // remove empty values
+  newBook.value.genres = genreInput.value.split(',').map(g => g.trim()).filter(g => g !== '');
 
   try {
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
     // Send a POST request to the backend API with the book data
     const response = await fetch(import.meta.env.VITE_API_URL + 'books', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newBook.value)
+      credentials: 'include',
+      body: JSON.stringify(newBook.value),
+      headers: myHeaders
     });
 
 
