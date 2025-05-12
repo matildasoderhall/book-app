@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { ref, onMounted } from 'vue'
-  import MainHeader from "@/fixtures/MainHeader.vue";
   import DataTable from "@/components/DataTable.vue";
+  import AdminHeader from '@/fixtures/AdminHeader.vue';
 
   const API_URL = import.meta.env.VITE_API_URL
   const columns = ['Username', 'Password', 'is_admin', 'created_at'];
@@ -19,7 +19,7 @@
 </script>
 
 <template>
-  <MainHeader title="Admin Users"/>
+  <AdminHeader title="Users"/>
   <DataTable
   :columns="columns"
   :rows="rows"
