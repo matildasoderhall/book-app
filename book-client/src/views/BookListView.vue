@@ -29,8 +29,9 @@
 
 
 <template>
+  <MainHeader title="Book List"/>
   <div class="page-wrapper">
-    <MainHeader title="Book List"/>
+
 
     <section id="books">
   <article v-for="book in books" :key="book.id" class="book-card">
