@@ -1,18 +1,22 @@
 <script setup lang="ts">
     import MainHeader from "@/fixtures/MainHeader.vue";
   import { onMounted, ref } from "vue";
-  import { RouterLink } from "vue-router";
+
+  import { IBook } from '@/types/IBooks'
+
+  const books = ref<IBook[]>([]);
 
 
-const newBook = ref({
+const newBook = ref<IBook>({
   title: '',
   description: '',
   author: '',
   genres: [],
   image: '',
-  published_year: 0
+  published_year: 0,
+  id: '',
+  _id: ''
 });
-
 
 const genreInput = ref('');
 
@@ -45,8 +49,9 @@ const createBook = async () => {
 </script>
 
 <template>
+      <MainHeader title="Add book"/>
+
   <div class="page-wrapper">
-    <MainHeader title="Add book"/>
 
     <form @submit.prevent="createBook" class="book-form">
       <label>

@@ -28,8 +28,8 @@
 
 
 <template>
+  <MainHeader title="Admin Book Overview"/>
   <div class="page-wrapper">
-    <MainHeader title="Admin Book Overview"/>
 
     <form id="" @submit.prevent="searchBooks">
       <input type="text" placeholder="Search" v-model="searchQuery">
