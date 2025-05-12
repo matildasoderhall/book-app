@@ -1,6 +1,5 @@
 <script setup lang="ts">
-  import { onMounted, ref, PropType } from "vue";
-  import { RouterLink } from "vue-router";
+  import { PropType } from "vue";
 
   defineProps({
     image: String,

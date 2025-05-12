@@ -4,8 +4,17 @@ import { onMounted, ref } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import BigCard from "../components/BigCard.vue"
 import PrimaryButton from '@/components/atoms/PrimaryButton.vue';
+import ReviewList from '@/components/ReviewList.vue';
 
 const API_URL = import.meta.env.VITE_API_URL
+
+interface Review {
+  _id: string;
+  name: string;
+  content: string;
+  rating: number;
+  created_at: Date;
+}
 
 interface Book {
   _id: string;
@@ -15,6 +24,7 @@ interface Book {
   genres: string[];
   image: string;
   published_year: number;
+  reviews: Review[];
 }
 
 const book = ref<Book | null>(null);
@@ -49,10 +59,29 @@ v-if="book"
 :description="book.description"
 :genres="book.genres"></BigCard>
 
+<section v-if="book?.reviews.length" class="review-wrapper">
+    <h3>Reviews</h3>
+    <ReviewList
+    v-for="review in book?.reviews"
+    :key="review._id"
+    :name="review.name"
+    :rating="review.rating"
+    :content="review.content"
+    :created_at="review.created_at"></ReviewList>
+
+</section>
+
 </template>
 
 <style lang="scss" scoped>
 .button {
     margin: 1rem;
+}
+.review-wrapper {
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 4px;
+  color: $jet-color;
 }
 </style>
