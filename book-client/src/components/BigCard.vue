@@ -22,7 +22,7 @@
     <section class="book-section">
         <img :src="image" class="book-cover">
         <div class="text-section">
-            <h3>{{ title }}</h3>
+            <h1>{{ title }}</h1>
             <span>by {{ author }}, {{ published_year }}</span>
             <p class="description">{{ description }}</p>
             <p>Genres: {{ genres.join(', ') }} </p>
@@ -36,7 +36,7 @@ body{
         background-color: white;
         padding: 0.5rem;
         display: flex;
-        margin: 2rem;
+        margin: 1rem;
         color: $jet-color;
         border-radius: 4px;
 

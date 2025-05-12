@@ -36,8 +36,9 @@ onMounted(async () => {
 
 <template>
 <MainHeader title = "Book"></MainHeader>
-<PrimaryButton
-buttonLabel="Back" to="/"></PrimaryButton>
+<RouterLink to="/" class="button">
+    <PrimaryButton buttonLabel="Back"></PrimaryButton>
+</RouterLink>
 
 <BigCard
 v-if="book"
@@ -51,5 +52,7 @@ v-if="book"
 </template>
 
 <style lang="scss" scoped>
-
+.button {
+    margin: 1rem;
+}
 </style>
