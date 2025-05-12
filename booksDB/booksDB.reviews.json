@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "681e000ca67dcb9775f12a81"
+  },
+  "name": "Lotta",
+  "content": "Jag säger bara WOW! Vilken bok, alla borde läsa!",
+  "rating": 5,
+  "book": {
+    "$oid": "681c9aeb9137e6881f559a8c"
+  },
+  "created_at": {
+    "$date": "2025-05-09T13:15:56.185Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681e006da67dcb9775f12a87"
+  },
+  "name": "Elias",
+  "content": "Njaa, detta var ingenting för mig.",
+  "rating": 2,
+  "book": {
+    "$oid": "681c9af49137e6881f559a8e"
+  },
+  "created_at": {
+    "$date": "2025-05-09T13:17:33.504Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681e00aaa67dcb9775f12a8e"
+  },
+  "name": "Maria",
+  "content": "Denna gillade jag! Vissa delar var bättre än andra",
+  "rating": 4,
+  "book": {
+    "$oid": "681c9ad59137e6881f559a8a"
+  },
+  "created_at": {
+    "$date": "2025-05-09T13:18:34.594Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681e0128a67dcb9775f12a96"
+  },
+  "name": "Josef",
+  "content": "Den var inte riktigt my cup of tea",
+  "rating": 3,
+  "book": {
+    "$oid": "681c9b009137e6881f559a92"
+  },
+  "created_at": {
+    "$date": "2025-05-09T13:20:40.471Z"
+  },
+  "__v": 0
+}]

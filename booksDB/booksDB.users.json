@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "681a0303ee1e725978a9258c"
+  },
+  "username": "strindis8",
+  "password": "$2b$10$aZzHgNpHo5KadohhpWNEO.d4o34GJhKIOfgltCHwQ7uZCMJS26CJm",
+  "is_admin": false,
+  "created_at": {
+    "$date": "2025-05-06T12:39:31.563Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681a0303ee1e725978a9258d"
+  },
+  "username": "ibbe97",
+  "password": "$2b$10$/CUWYe09R6P98UiVt1xM8uT/Vshs3t4bkOUOS88a33ADLnYqTmC5u",
+  "is_admin": "false",
+  "created_at": {
+    "$date": "2025-01-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681b146aee1e725978a9258e"
+  },
+  "username": "admin",
+  "password": "$2b$10$d4HRH.rh.gDepOoZQzIYZOMnkZ.rRgvhI5ZGYiGKG76bOsyz2e5uW",
+  "is_admin": "true",
+  "created_at": {
+    "$date": "2025-05-07T08:06:02.645Z"
+  }
+}]
