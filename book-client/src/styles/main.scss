@@ -2,5 +2,10 @@
 
 @use '@/styles/vendor/_normalize' as *;
 
+body {
+  background-color: $eggshell-color;
+  font-family: 'Open Sans', sans-serif;
+  color: #2d2d2d;
 
+}
 
