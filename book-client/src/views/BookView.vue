@@ -5,6 +5,7 @@ import { RouterLink, useRoute } from "vue-router";
 import BigCard from "../components/BigCard.vue"
 import PrimaryButton from '@/components/atoms/PrimaryButton.vue';
 import ReviewList from '@/components/ReviewList.vue';
+import ReviewForm from '@/components/ReviewForm.vue';
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -58,6 +59,8 @@ v-if="book"
 :published_year="book.published_year"
 :description="book.description"
 :genres="book.genres"></BigCard>
+
+<ReviewForm></ReviewForm>
 
 <section v-if="book?.reviews.length" class="review-wrapper">
     <h3>Reviews</h3>
