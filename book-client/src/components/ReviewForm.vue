@@ -1,8 +1,33 @@
 <script setup lang="ts">
 import InputField from './atoms/InputField.vue';
 import { useRoute } from 'vue-router';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, reactive } from 'vue';
+import PrimaryButton from './atoms/PrimaryButton.vue';
+import ReviewList from './ReviewList.vue';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+const form = reactive({
+    name: '',
+    content: '',
+    rating: ''
+})
+
+const submit = async () => {
+
+    try {
+        await fetch(API_URL + '/reviews', {
+            method: "POST",
+            headers : {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({})
+        })
+
+    } catch (error) {
+        console.log(error);
+    } 
+}
 const route = useRoute();
 
 const reviewedBookId =  ref<string | null>(null);
@@ -19,18 +44,30 @@ onMounted (() => {
 
 
 <template>
-    <div>
-        <InputField type="text" placeholder="Name"></InputField>
-        <InputField type="text" placeholder="Review"></InputField>
-        <InputField v-model="rating" type="number" placeholder="Rating" :min="1" :max="5"></InputField>
+    <form class="form-section" @submit.prevent="submit">
+        <label>Name
+            <InputField placeholder="Name" type="text" name="name" v-model="form.name"></InputField>
+        </label>
+        <label>Rating
+            <InputField placeholder="Rating" type="number" name="rating" :min="1" :max="5" v-model="form.rating"></InputField>
+        </label>
+        <label>Review
+            <InputField placeholder="Review" type="text" name="review" v-model="form.content"></InputField>
+        </label>
+        <PrimaryButton type="submit" buttonLabel="Submit review"></PrimaryButton>
 
-
-    </div>
+    </form>
 
 </template>
 
 
 <style lang="scss" scoped>
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 
 
 </style>

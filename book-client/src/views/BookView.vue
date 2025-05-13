@@ -60,7 +60,10 @@ v-if="book"
 :description="book.description"
 :genres="book.genres"></BigCard>
 
-<ReviewForm></ReviewForm>
+<section class="createReview">
+    <h3>Create review</h3>
+    <ReviewForm></ReviewForm>
+</section>
 
 <section v-if="book?.reviews.length" class="review-wrapper">
     <h3>Reviews</h3>
@@ -71,8 +74,8 @@ v-if="book"
     :rating="review.rating"
     :content="review.content"
     :created_at="review.created_at"></ReviewList>
-
 </section>
+
 
 </template>
 
@@ -86,5 +89,12 @@ v-if="book"
   margin: 1rem;
   border-radius: 4px;
   color: $jet-color;
+}
+
+.createReview {
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 4px;
 }
 </style>
