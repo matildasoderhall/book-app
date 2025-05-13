@@ -2,14 +2,22 @@
   import MainHeader from "@/fixtures/MainHeader.vue";
   import InputField from "@/components/atoms/InputField.vue";
   import PrimaryButton from '@/components/atoms/PrimaryButton.vue';
-  import { ref } from 'vue';
+  import { reactive } from 'vue';
+  import { useRouter } from "vue-router";
+  import { useUserStore } from "@/stores/user";
 
   const API_URL = import.meta.env.VITE_API_URL;
 
-  const username = ref('');
-  const password = ref('');
+  const loginValues = reactive({
+    username: '',
+    password: ''
+  })
 
-  const login = async () => {
+  const userStore = useUserStore();
+  const router = useRouter();
+
+
+  const handleLogin = async () => {
     try {
       const response = await fetch(API_URL + 'auth/login', {
       method: 'POST',
@@ -17,10 +25,7 @@
         'Content-Type': 'application/json',
       },
       credentials: 'include',
-      body: JSON.stringify({
-        username: username.value,
-        password: password.value,
-      }),
+      body: JSON.stringify(loginValues),
     })
 
     if (!response.ok) {
@@ -30,8 +35,9 @@
     const data = await response.json()
     const token = data.token
 
-    localStorage.setItem('token', token)
-    window.location.href = '/'
+    await userStore.fetchUser();
+    
+    router.push('/');
     console.log('You are logged in');
     } catch (error) {
       console.error('Login failed:', error)
@@ -44,10 +50,10 @@
 <template>
   <MainHeader title="Login"/>
   <main>
-    <form @submit.prevent="login">
+    <form @submit.prevent="handleLogin">
       <div class="login-container">
-        <InputField type="text" placeholder="Username" v-model="username"/>
-        <InputField type="password" placeholder="Password" v-model="password" />
+        <InputField type="text" placeholder="Username" v-model="loginValues.username"/>
+        <InputField type="password" placeholder="Password" v-model="loginValues.password" />
         <a class="register">Register</a>
       </div>
       <PrimaryButton type="submit" buttonLabel="Login"/>
