@@ -4,6 +4,7 @@
   import PrimaryButton from '@/components/atoms/PrimaryButton.vue';
   import { reactive } from 'vue';
   import { useRouter } from "vue-router";
+  import { useUserStore } from "@/stores/user";
 
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -12,10 +13,11 @@
     password: ''
   })
 
+  const userStore = useUserStore();
   const router = useRouter();
 
 
-  const login = async () => {
+  const handleLogin = async () => {
     try {
       const response = await fetch(API_URL + 'auth/login', {
       method: 'POST',
@@ -33,7 +35,8 @@
     const data = await response.json()
     const token = data.token
 
-    localStorage.setItem('token', token)
+    await userStore.fetchUser();
+    
     router.push('/');
     console.log('You are logged in');
     } catch (error) {
@@ -47,7 +50,7 @@
 <template>
   <MainHeader title="Login"/>
   <main>
-    <form @submit.prevent="login">
+    <form @submit.prevent="handleLogin">
       <div class="login-container">
         <InputField type="text" placeholder="Username" v-model="loginValues.username"/>
         <InputField type="password" placeholder="Password" v-model="loginValues.password" />
