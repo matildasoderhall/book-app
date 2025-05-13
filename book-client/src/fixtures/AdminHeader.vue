@@ -66,6 +66,6 @@
 }
 
 h1 {
-  padding-inline: 3.5rem;
+  padding-inline: 9rem;
 }
 </style>

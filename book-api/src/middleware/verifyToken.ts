@@ -5,7 +5,9 @@ import { CustomRequest, DecodedUser } from '../types/IUsers';
 export const verifyAccessToken = (req: CustomRequest, res: Response, next: NextFunction): void => {
     const token = req.cookies?.accessToken;
 
-    if (!token === undefined) {
+    
+
+    if (!token) {
         res.status(401).json({ message: 'Access token is missing' });
         return;
     }

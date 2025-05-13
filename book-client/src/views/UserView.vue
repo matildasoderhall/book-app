@@ -20,17 +20,25 @@
 
 <template>
   <AdminHeader title="Users"/>
-  <div class="table-container">
+  <main>
+    <div class="table-container">
     <DataTable
       :columns="columns"
       :rows="rows"
     />
   </div>
+  </main>
+
 
 </template>
 
 <style lang="scss" scoped>
+main {
+  display: flex;
+  justify-content: center;
+}
 .table-container {
   padding-inline: 3.5rem;
+  max-width: 1000px;
 }
 </style>
