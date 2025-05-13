@@ -90,7 +90,7 @@
 
   th,
   td {
-    text-align: left; // 👈 make sure everything is left-aligned
+    text-align: left;
     padding: 0.75rem;
     border: 1px solid #ddd;
     font-size: 1rem;
