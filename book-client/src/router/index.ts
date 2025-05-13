@@ -36,11 +36,13 @@ const router = createRouter({
       path: '/admin-books',
       name: 'admin-books',
       component: AdminBooksView,
+      meta: {requiresAdmin: true}
     },
     {
       path: '/admin-add-book',
       name: 'admin-add-book',
       component: AdminCreateBooksView,
+      meta: {requiresAdmin: true}
     }
 
 
