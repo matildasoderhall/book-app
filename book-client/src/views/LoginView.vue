@@ -2,12 +2,18 @@
   import MainHeader from "@/fixtures/MainHeader.vue";
   import InputField from "@/components/atoms/InputField.vue";
   import PrimaryButton from '@/components/atoms/PrimaryButton.vue';
-  import { ref } from 'vue';
+  import { reactive } from 'vue';
+  import { useRouter } from "vue-router";
 
   const API_URL = import.meta.env.VITE_API_URL;
 
-  const username = ref('');
-  const password = ref('');
+  const loginValues = reactive({
+    username: '',
+    password: ''
+  })
+
+  const router = useRouter();
+
 
   const login = async () => {
     try {
@@ -17,10 +23,7 @@
         'Content-Type': 'application/json',
       },
       credentials: 'include',
-      body: JSON.stringify({
-        username: username.value,
-        password: password.value,
-      }),
+      body: JSON.stringify(loginValues),
     })
 
     if (!response.ok) {
@@ -31,7 +34,7 @@
     const token = data.token
 
     localStorage.setItem('token', token)
-    window.location.href = '/'
+    router.push('/');
     console.log('You are logged in');
     } catch (error) {
       console.error('Login failed:', error)
@@ -46,8 +49,8 @@
   <main>
     <form @submit.prevent="login">
       <div class="login-container">
-        <InputField type="text" placeholder="Username" v-model="username"/>
-        <InputField type="password" placeholder="Password" v-model="password" />
+        <InputField type="text" placeholder="Username" v-model="loginValues.username"/>
+        <InputField type="password" placeholder="Password" v-model="loginValues.password" />
         <a class="register">Register</a>
       </div>
       <PrimaryButton type="submit" buttonLabel="Login"/>
