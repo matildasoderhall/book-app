@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import Users from '../models/Users';
+import { CustomRequest } from '../types/IUsers';
 
 export const register = async (req: Request, res: Response) => {
     const {username, password, is_admin} = req.body;
@@ -93,6 +94,18 @@ export const login = async (req: Request, res: Response) => {
         const message = error instanceof Error ? error.message : 'Unkown error'
         res.status(500).json({error: message})
     }
+};
+
+export const getCurrentUser = async (req: CustomRequest, res: Response) => {
+    if (!req.user) {
+        res.status(401).json({message: 'Unauthorized'});
+        return;
+    }
+
+    res.status(200).json({
+        username: req.user.username,
+        is_admin: req.user.is_admin
+    });
 };
 
 export const logout = async (_: Request, res: Response) => {
