@@ -30,12 +30,12 @@ const router = createRouter({
       component: UserView,
     },
     {
-      path: '/admin-books',
+      path: '/admin/admin-books',
       name: 'admin-books',
       component: AdminBooksView,
     },
     {
-      path: '/admin-add-book',
+      path: '/admin/admin-add-book',
       name: 'admin-add-book',
       component: AdminCreateBooksView,
     }
