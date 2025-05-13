@@ -17,7 +17,7 @@ const props = defineProps<{
   </thead>
   <tbody>
     <tr v-for="(row, index) in rows" :key="row.id">
-      <td v-for="column in columns" :key="column">{{ row[column.toLowerCase()] }}</td>
+      <td v-for="column in columns" :key="column">{{ Array.isArray(row[column.toLowerCase()]) ? row[column.toLowerCase()].join(', ') : row[column.toLowerCase()] ?? '' }}</td>
     </tr>
   </tbody>
  </table>

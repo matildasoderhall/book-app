@@ -1,7 +1,8 @@
 <script setup lang="ts">
   import { onMounted, ref } from "vue";
   import { IBook } from '@/types/IBooks'
-import AdminHeader from "@/fixtures/AdminHeader.vue";
+  import AdminHeader from "@/fixtures/AdminHeader.vue";
+  import Datatable from "@/components/DataTable.vue";
 
   const books = ref<IBook[]>([]);
 
@@ -25,6 +26,8 @@ import AdminHeader from "@/fixtures/AdminHeader.vue";
     alert('Query:' + searchQuery.value);
   }
 
+  const columns = ['Title', 'Author', 'Genres', 'Published_year'];
+
 </script>
 
 
@@ -33,12 +36,10 @@ import AdminHeader from "@/fixtures/AdminHeader.vue";
   <AdminHeader title="Book Overview" />
   <div class="page-wrapper">
 
-    <form id="" @submit.prevent="searchBooks">
-      <input type="text" placeholder="Search" v-model="searchQuery">
-      <button>Submit</button>
-    </form>
+    <Datatable :columns="columns" :rows="books" />
 
-    <table class="book-table">
+
+    <!-- <table class="book-table">
       <thead>
         <tr>
           <th>Title</th>
@@ -55,7 +56,7 @@ import AdminHeader from "@/fixtures/AdminHeader.vue";
           <td>{{ book.published_year }}</td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
   </div>
 </template>
 

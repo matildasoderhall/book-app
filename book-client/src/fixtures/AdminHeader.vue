@@ -22,8 +22,8 @@
     </div>
     <nav class="admin-nav-links">
       <RouterLink to="/admin/users" class="router-link">Users</RouterLink>
-      <RouterLink to="/admin-books" class="router-link">Books</RouterLink>
-      <RouterLink to="/admin-create-book" class="router-link">Create Books</RouterLink>
+      <RouterLink to="/admin/books" class="router-link">Books</RouterLink>
+      <RouterLink to="/admin/add-book" class="router-link">Create Books</RouterLink>
     </nav>
     <h1 class="green">{{ title }}</h1>
   </header>
