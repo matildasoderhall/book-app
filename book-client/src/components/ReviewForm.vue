@@ -19,13 +19,15 @@ const reviewedBookId =  ref<string | null>(null);
 
 const errors = reactive({
     name: '',
-    content: ''
+    content: '',
+    rating: ''
 });
 
 const submit = async () => {
 
     errors.name = '';
     errors.content = '';
+    errors.rating = '';
 
     let hasError = false;
 
@@ -37,6 +39,11 @@ const submit = async () => {
     if (!form.content) {
         errors.content = 'Please write a review';
         hasError = true;
+    }
+
+    if (!form.rating) {
+        errors.rating = 'Enter a number between 1-5';
+        hasError = true
     }
 
     try {
@@ -83,6 +90,7 @@ onMounted ( async() => {
         </label>
         <label>Rating
             <InputField type="number" name="rating" :min="1" :max="5" v-model="form.rating" class="rating-input"></InputField>
+            <span class="error" v-if="errors.rating">{{ errors.rating }}</span>
         </label>
         <label>Review
             <InputField placeholder="Review" type="text" name="review" v-model="form.content"></InputField>
