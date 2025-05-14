@@ -7,6 +7,8 @@ const props = defineProps<{
 	type?: 'text' | 'radio' | 'checkbox' | 'date' | 'password' | 'number';
   min?: number;
   max?: number;
+  label: string;
+  id?: string;
 }>();
 
 const emit = defineEmits<{
@@ -21,17 +23,27 @@ const onInput = (event: Event) => {
 </script>
 
 <template>
-  <input
-  :type="type"
-  :placeholder="placeholder"
-  :value="modelValue"
-  @input="onInput"
-  :min="min"
-  :max="max"
-  />
+  <label :for="id">
+    {{ label }}
+    <input
+    :id="id"
+    :type="type"
+    :placeholder="placeholder"
+    :value="modelValue"
+    @input="onInput"
+    :min="min"
+    :max="max"
+    />
+  </label>
 </template>
 
 <style lang="scss" scoped>
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 input[type="text"],
 input[type="date"],
 input[type="password"] {
