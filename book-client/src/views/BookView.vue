@@ -5,6 +5,7 @@ import { RouterLink, useRoute } from "vue-router";
 import BigCard from "../components/BigCard.vue"
 import PrimaryButton from '@/components/atoms/PrimaryButton.vue';
 import ReviewList from '@/components/ReviewList.vue';
+import ReviewForm from '@/components/ReviewForm.vue';
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -31,7 +32,7 @@ const book = ref<Book | null>(null);
 
 const route = useRoute();
 
-onMounted(async () => {
+const fetchBook = async () => {
     try {
       const response = await fetch(API_URL + 'books/' + route.params.id);
       const data = await response.json();
@@ -41,6 +42,11 @@ onMounted(async () => {
     } catch (error) {
       console.log(error)
     }
+
+}
+
+onMounted(async () => {
+    fetchBook();
   });
 </script>
 
@@ -59,6 +65,11 @@ v-if="book"
 :description="book.description"
 :genres="book.genres"></BigCard>
 
+<section class="createReview">
+    <h3>Create review</h3>
+    <ReviewForm @submitted="fetchBook"></ReviewForm>
+</section>
+
 <section v-if="book?.reviews.length" class="review-wrapper">
     <h3>Reviews</h3>
     <ReviewList
@@ -68,8 +79,8 @@ v-if="book"
     :rating="review.rating"
     :content="review.content"
     :created_at="review.created_at"></ReviewList>
-
 </section>
+
 
 </template>
 
@@ -83,5 +94,12 @@ v-if="book"
   margin: 1rem;
   border-radius: 4px;
   color: $jet-color;
+}
+
+.createReview {
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 4px;
 }
 </style>
