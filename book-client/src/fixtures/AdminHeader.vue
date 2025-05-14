@@ -34,6 +34,7 @@
       </RouterLink>
 
       <nav>
+      <RouterLink to="/" class="router-link">Home</RouterLink>
       <RouterLink to="/admin/users" class="router-link">Admin</RouterLink>
       <template v-if="useStore.username">
         <button @click="logout" class="router-link button-link">Logout</button>
