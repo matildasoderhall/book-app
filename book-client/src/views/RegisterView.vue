@@ -1,14 +1,12 @@
 <script setup lang="ts">
-  import MainHeader from "@/fixtures/MainHeader.vue";
-  import InputField from "@/components/atoms/InputField.vue";
-  import PrimaryButton from '@/components/atoms/PrimaryButton.vue';
-  import { reactive } from 'vue';
-  import { useRouter } from "vue-router";
-  import { useUserStore } from "@/stores/user";
+import InputField from '@/components/atoms/InputField.vue';
+import PrimaryButton from '@/components/atoms/PrimaryButton.vue';
+import MainHeader from '@/fixtures/MainHeader.vue';
+import { reactive, ref } from 'vue';
 
   const API_URL = import.meta.env.VITE_API_URL;
 
-  const loginValues = reactive({
+ const registerValues = reactive({
     username: '',
     password: ''
   })
@@ -19,30 +17,27 @@
   })
 
   const validateForm = () => {
-    formErrors.username = loginValues.username ? '' : 'Please fill in your username';
-    formErrors.password = loginValues.password ? '' : 'Please fill in your password';
+    formErrors.username = registerValues.username ? '' : 'Username is required';
+    formErrors.password = registerValues.password ? '' : 'Password is required';
 
     return !formErrors.username && !formErrors.password;
   };
 
-
-
-  const userStore = useUserStore();
-  const router = useRouter();
-
-
-  const handleLogin = async () => {
+  const register = async () => {
     if (!validateForm()) {
       return;
     }
+
     try {
-      const response = await fetch(API_URL + 'auth/login', {
+      const response = await fetch(API_URL + 'auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      credentials: 'include',
-      body: JSON.stringify(loginValues),
+      body: JSON.stringify({
+        username: registerValues.username,
+        password: registerValues.password,
+      }),
     })
 
     if (!response.ok) {
@@ -52,35 +47,33 @@
     const data = await response.json()
     const token = data.token
 
-    await userStore.fetchUser();
-
-    router.push('/');
-    console.log('You are logged in');
+    localStorage.setItem('token', token)
+    window.location.href = '/login'
+    console.log('New user has been registred');
     } catch (error) {
-      console.error('Login failed:', error)
+      console.error('Registration failed:', error)
     }
   }
-
 
 </script>
 
 <template>
-  <MainHeader title="Login"/>
+  <MainHeader title="Register"/>
   <main>
-    <form @submit.prevent="handleLogin">
-      <h1>Login</h1>
+    <h1>Register</h1>
+    <form @submit.prevent="register">
       <div class="login-container">
         <div>
-          <InputField id="username" label="Username" type="text" placeholder="Username" v-model="loginValues.username"/>
+          <InputField id="username" label="Username" type="text" placeholder="Username" v-model="registerValues.username"/>
           <span v-if="formErrors.username" class="error">{{ formErrors.username }}</span>
         </div>
         <div>
-          <InputField id="password" label="Password" type="password" placeholder="Password" v-model="loginValues.password" />
+          <InputField id="password" label="Password" type="password" placeholder="Password" v-model="registerValues.password" />
           <span v-if="formErrors.password" class="error">{{ formErrors.password }}</span>
         </div>
-        <RouterLink to="/register" class="register">New user?</RouterLink>
+        <RouterLink to="/login" class="login">Login here</RouterLink>
       </div>
-      <PrimaryButton type="submit" buttonLabel="Login"/>
+      <PrimaryButton type="submit" buttonLabel="Register"/>
     </form>
   </main>
 </template>
@@ -89,6 +82,7 @@
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 400px);
@@ -114,11 +108,10 @@ form {
   }
 }
 
-.register {
+.login {
   align-self: flex-end;
   text-decoration: underline;
   font-family: $secondary-font;
-  color: $delft-blue-color;
   cursor: pointer;
   &:hover {
     color: $brown-sugar-color;
@@ -127,7 +120,5 @@ form {
 
 .error {
   color: red;
-  margin-top: 0px;
-  margin-bottom: 5px;
 }
 </style>
