@@ -13,11 +13,28 @@
     password: ''
   })
 
+  const formErrors = reactive({
+    username: '',
+    password: ''
+  })
+
+  const validateForm = () => {
+    formErrors.username = loginValues.username ? '' : 'Please fill in your username';
+    formErrors.password = loginValues.password ? '' : 'Please fill in your password';
+
+    return !formErrors.username && !formErrors.password;
+  };
+
+
+
   const userStore = useUserStore();
   const router = useRouter();
 
 
   const handleLogin = async () => {
+    if (!validateForm()) {
+      return;
+    }
     try {
       const response = await fetch(API_URL + 'auth/login', {
       method: 'POST',
@@ -51,9 +68,16 @@
   <MainHeader title="Login"/>
   <main>
     <form @submit.prevent="handleLogin">
+      <h1>Login</h1>
       <div class="login-container">
-        <InputField type="text" placeholder="Username" v-model="username"/>
-        <InputField type="password" placeholder="Password" v-model="password" />
+        <div>
+          <InputField id="username" label="Username" type="text" placeholder="Username" v-model="loginValues.username"/>
+          <span v-if="formErrors.username" class="error">{{ formErrors.username }}</span>
+        </div>
+        <div>
+          <InputField id="password" label="Password" type="password" placeholder="Password" v-model="loginValues.password" />
+          <span v-if="formErrors.password" class="error">{{ formErrors.password }}</span>
+        </div>
         <RouterLink to="/register" class="register">New user?</RouterLink>
       </div>
       <PrimaryButton type="submit" buttonLabel="Login"/>
@@ -67,7 +91,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 300px);
+  height: calc(100vh - 400px);
 }
 
 form {
@@ -99,5 +123,11 @@ form {
   &:hover {
     color: $brown-sugar-color;
   }
+}
+
+.error {
+  color: red;
+  margin-top: 0px;
+  margin-bottom: 5px;
 }
 </style>

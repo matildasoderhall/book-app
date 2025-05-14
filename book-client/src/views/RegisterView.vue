@@ -2,14 +2,32 @@
 import InputField from '@/components/atoms/InputField.vue';
 import PrimaryButton from '@/components/atoms/PrimaryButton.vue';
 import MainHeader from '@/fixtures/MainHeader.vue';
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 
   const API_URL = import.meta.env.VITE_API_URL;
 
-  const username = ref('');
-  const password = ref('');
+ const registerValues = reactive({
+    username: '',
+    password: ''
+  })
+
+  const formErrors = reactive({
+    username: '',
+    password: ''
+  })
+
+  const validateForm = () => {
+    formErrors.username = registerValues.username ? '' : 'Username is required';
+    formErrors.password = registerValues.password ? '' : 'Password is required';
+
+    return !formErrors.username && !formErrors.password;
+  };
 
   const register = async () => {
+    if (!validateForm()) {
+      return;
+    }
+
     try {
       const response = await fetch(API_URL + 'auth/register', {
       method: 'POST',
@@ -17,8 +35,8 @@ import { ref } from 'vue';
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        username: username.value,
-        password: password.value,
+        username: registerValues.username,
+        password: registerValues.password,
       }),
     })
 
@@ -42,10 +60,17 @@ import { ref } from 'vue';
 <template>
   <MainHeader title="Register"/>
   <main>
+    <h1>Register</h1>
     <form @submit.prevent="register">
       <div class="login-container">
-        <InputField type="text" placeholder="Username" v-model="username"/>
-        <InputField type="password" placeholder="Password" v-model="password" />
+        <div>
+          <InputField id="username" label="Username" type="text" placeholder="Username" v-model="registerValues.username"/>
+          <span v-if="formErrors.username" class="error">{{ formErrors.username }}</span>
+        </div>
+        <div>
+          <InputField id="password" label="Password" type="password" placeholder="Password" v-model="registerValues.password" />
+          <span v-if="formErrors.password" class="error">{{ formErrors.password }}</span>
+        </div>
         <RouterLink to="/login" class="login">Login here</RouterLink>
       </div>
       <PrimaryButton type="submit" buttonLabel="Register"/>
@@ -57,9 +82,10 @@ import { ref } from 'vue';
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 300px);
+  height: calc(100vh - 400px);
 }
 
 form {
@@ -90,5 +116,9 @@ form {
   &:hover {
     color: $brown-sugar-color;
   }
+}
+
+.error {
+  color: red;
 }
 </style>
