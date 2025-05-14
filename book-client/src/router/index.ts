@@ -6,7 +6,6 @@ import UserView from '@/views/UserView.vue'
 import AdminBooksView from '@/views/AdminBooksView.vue'
 import AdminCreateBooksView from '@/views/AdminCreateBooksView.vue'
 import { useUserStore } from '@/stores/user'
-
 import RegisterView from '@/views/RegisterView.vue'
 
 const router = createRouter({
