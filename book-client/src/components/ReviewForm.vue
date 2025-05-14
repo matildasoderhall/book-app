@@ -16,12 +16,17 @@ const form = reactive({
 const submit = async () => {
 
     try {
-        await fetch(API_URL + '/reviews', {
+        await fetch(API_URL + 'reviews', {
             method: "POST",
             headers : {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({})
+            body: JSON.stringify({
+                name: form.name,
+                content: form.content,
+                rating: form.rating,
+                bookId: reviewedBookId.value
+            })
         })
 
     } catch (error) {
@@ -49,7 +54,7 @@ onMounted (() => {
             <InputField placeholder="Name" type="text" name="name" v-model="form.name"></InputField>
         </label>
         <label>Rating
-            <InputField placeholder="Rating" type="number" name="rating" :min="1" :max="5" v-model="form.rating"></InputField>
+            <InputField type="number" name="rating" :min="1" :max="5" v-model="form.rating"></InputField>
         </label>
         <label>Review
             <InputField placeholder="Review" type="text" name="review" v-model="form.content"></InputField>
