@@ -32,7 +32,7 @@ const book = ref<Book | null>(null);
 
 const route = useRoute();
 
-onMounted(async () => {
+const fetchBook = async () => {
     try {
       const response = await fetch(API_URL + 'books/' + route.params.id);
       const data = await response.json();
@@ -42,6 +42,11 @@ onMounted(async () => {
     } catch (error) {
       console.log(error)
     }
+
+}
+
+onMounted(async () => {
+    fetchBook();
   });
 </script>
 
@@ -62,7 +67,7 @@ v-if="book"
 
 <section class="createReview">
     <h3>Create review</h3>
-    <ReviewForm></ReviewForm>
+    <ReviewForm @submitted="fetchBook"></ReviewForm>
 </section>
 
 <section v-if="book?.reviews.length" class="review-wrapper">

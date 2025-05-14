@@ -3,7 +3,8 @@ import InputField from './atoms/InputField.vue';
 import { useRoute } from 'vue-router';
 import { ref, onMounted, reactive } from 'vue';
 import PrimaryButton from './atoms/PrimaryButton.vue';
-import ReviewList from './ReviewList.vue';
+
+const emit = defineEmits(['submitted']);
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -12,6 +13,9 @@ const form = reactive({
     content: '',
     rating: ''
 })
+
+const route = useRoute();
+const reviewedBookId =  ref<string | null>(null);
 
 const submit = async () => {
 
@@ -29,16 +33,19 @@ const submit = async () => {
             })
         })
 
+        emit('submitted')
+
+        form.name = '';
+        form.content = '';
+        form.rating = '';
+
     } catch (error) {
         console.log(error);
     } 
 }
-const route = useRoute();
 
-const reviewedBookId =  ref<string | null>(null);
-const rating = ref('');
 
-onMounted (() => {
+onMounted ( async() => {
     reviewedBookId.value = route.params.id as string;
     console.log("Book ID: ", reviewedBookId.value)
 
