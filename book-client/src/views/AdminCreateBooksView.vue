@@ -3,6 +3,7 @@
   import { onMounted, ref } from "vue";
 
   import { IBook } from '@/types/IBooks'
+import AdminHeader from "@/fixtures/AdminHeader.vue";
 
   const books = ref<IBook[]>([]);
 
@@ -49,9 +50,8 @@ const createBook = async () => {
 </script>
 
 <template>
-      <MainHeader title="Add book"/>
-
-  <div class="page-wrapper">
+    <AdminHeader title="Add book" />
+    <div class="page-wrapper">
 
     <form @submit.prevent="createBook" class="book-form">
       <label>
