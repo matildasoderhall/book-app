@@ -1,8 +1,9 @@
 <script setup lang="ts">
-  import MainHeader from "@/fixtures/MainHeader.vue";
+  import AdminHeader from "@/fixtures/AdminHeader.vue";
   import { onMounted, ref } from "vue";
   import { RouterLink } from "vue-router";
-    import { IBook } from '@/types/IBooks'
+  import { IBook } from '@/types/IBooks'
+
 
   const books = ref<IBook[]>([]);
 
@@ -31,7 +32,7 @@
 
 
 <template>
-  <MainHeader title="Admin Book Overview"/>
+  <AdminHeader title="Admin Book Overview"/>
   <div class="page-wrapper">
 
     <form id="" @submit.prevent="searchBooks">
