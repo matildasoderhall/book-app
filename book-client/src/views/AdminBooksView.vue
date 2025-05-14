@@ -4,6 +4,7 @@
   import AdminHeader from "@/fixtures/AdminHeader.vue";
   import Datatable from "@/components/DataTable.vue";
 
+
   const books = ref<IBook[]>([]);
 
   const API_URL = import.meta.env.VITE_API_URL
@@ -33,7 +34,7 @@
 
 
 <template>
-  <AdminHeader title="Book Overview" />
+  <AdminHeader title="Admin Book Overview"/>
   <div class="page-wrapper">
 
     <Datatable :columns="columns" :rows="books" />

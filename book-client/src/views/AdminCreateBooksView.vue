@@ -1,57 +1,57 @@
 <script setup lang="ts">
-    import MainHeader from "@/fixtures/MainHeader.vue";
+  import AdminHeader from "@/fixtures/AdminHeader.vue";
   import { onMounted, ref } from "vue";
-
   import { IBook } from '@/types/IBooks'
-import AdminHeader from "@/fixtures/AdminHeader.vue";
+
 
   const books = ref<IBook[]>([]);
 
 
-const newBook = ref<IBook>({
-  title: '',
-  description: '',
-  author: '',
-  genres: [],
-  image: '',
-  published_year: 0,
-  id: '',
-  _id: ''
-});
+  const newBook = ref<IBook>({
+    title: '',
+    description: '',
+    author: '',
+    genres: [],
+    image: '',
+    published_year: 0,
+    id: '',
+    _id: ''
+  });
 
-const genreInput = ref('');
-
-
-const createBook = async () => {
-
-  newBook.value.genres = genreInput.value.split(',').map(g => g.trim()).filter(g => g !== '');
-
-  try {
-
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    // Send a POST request to the backend API with the book data
-    const response = await fetch(import.meta.env.VITE_API_URL + 'books', {
-      method: 'POST',
-      credentials: 'include',
-      body: JSON.stringify(newBook.value),
-      headers: myHeaders
-    });
+  const genreInput = ref('');
 
 
-    const result = await response.json();
-    console.log('Book created:', result);
-  } catch (error) {
+  const createBook = async () => {
 
-    console.error('Error creating book:', error);
-  }
-};
+    newBook.value.genres = genreInput.value.split(',').map(g => g.trim()).filter(g => g !== '');
+
+    try {
+
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      // Send a POST request to the backend API with the book data
+      const response = await fetch(import.meta.env.VITE_API_URL + 'books', {
+        method: 'POST',
+        credentials: 'include',
+        body: JSON.stringify(newBook.value),
+        headers: myHeaders
+      });
+
+
+      const result = await response.json();
+      console.log('Book created:', result);
+    } catch (error) {
+
+      console.error('Error creating book:', error);
+    }
+  };
 </script>
 
 <template>
-    <AdminHeader title="Add book" />
-    <div class="page-wrapper">
+  <AdminHeader title="Add book"/>
+
+  <div class="page-wrapper">
 
     <form @submit.prevent="createBook" class="book-form">
       <label>

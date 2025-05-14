@@ -1,5 +1,23 @@
 <script setup lang="ts">
+  import { RouterLink, useRouter } from "vue-router";
   import logo from "@/assets/StoryStack_logo_eggshell.svg";
+  import { useUserStore } from "@/stores/user";
+
+  const API_URL = import.meta.env.VITE_API_URL;
+
+  const useStore = useUserStore();
+  const router = useRouter();
+
+  const logout = async ()  => {
+    await fetch(API_URL + 'auth/logout', {
+      method: 'POST',
+      credentials: 'include'
+    });
+
+    useStore.$reset();
+    router.push('/');
+  }
+
   defineProps({
     title: {
       type: String,
@@ -16,8 +34,15 @@
       </RouterLink>
 
       <nav>
+      <RouterLink to="/" class="router-link">Home</RouterLink>
       <RouterLink to="/admin/users" class="router-link">Admin</RouterLink>
-      <RouterLink to="/login" class="router-link">Login/Register</RouterLink>
+      <template v-if="useStore.username">
+        <button @click="logout" class="router-link button-link">Logout</button>
+      </template>
+      <template v-else>
+        <RouterLink to="/login" class="router-link">Login/Register</RouterLink>
+      </template>
+
       </nav>
     </div>
     <nav class="admin-nav-links">
@@ -33,7 +58,13 @@
 .router-link {
   text-decoration: none;
   font-size: 1.2rem;
+}
 
+.button-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .main-nav-links {
