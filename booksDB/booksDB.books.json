@@ -2,34 +2,37 @@
   "_id": {
     "$oid": "681c9ad59137e6881f559a8a"
   },
-  "title": "The Candy House",
-  "description": "A daring and inventive novel exploring memory, identity, and technology in a connected world.",
-  "author": "Jennifer Egan",
+  "title": "Hollow",
+  "description": "A darkly comic and thought-provoking novel about grief, belief, and the collapse of a life built on certainty.",
+  "author": "Owen Egerton",
   "genres": [
     "Fiction",
-    "Literary"
+    "Dark Comedy"
   ],
-  "image": "/candy-house-design-jamie-keenan.jpg",
-  "published_year": 2022,
+  "image": "https://ineedabookcover.com/wp-content/uploads/2023/01/MattDorfman1.jpg",
+  "published_year": 2017,
   "reviews": [
     {
       "$oid": "681e00aaa67dcb9775f12a8e"
+    },
+    {
+      "$oid": "6821f43361cc68aafee3e986"
     }
   ],
-  "__v": 1
+  "__v": 2
 },
 {
   "_id": {
     "$oid": "681c9aeb9137e6881f559a8c"
   },
-  "title": "Hard-Boiled Wonderland and the End of the World",
-  "description": "A mind-bending novel blending cyberpunk science fiction with surreal fantasy, exploring consciousness, identity, and parallel worlds.",
-  "author": "Haruki Murakami",
+  "title": "The Adult",
+  "description": "A tender coming-of-age novel about identity, queerness, and the search for belonging in a world full of contradictions.",
+  "author": "Bronwyn Fischer",
   "genres": [
     "Fiction"
   ],
-  "image": "end-of-the-world-design-suzanne-dean-illus-takaya-katsuragawa-scaled.jpg",
-  "published_year": 1985,
+  "image": "https://ineedabookcover.com/wp-content/uploads/2023/06/TheAdult.jpg",
+  "published_year": 2023,
   "reviews": [
     {
       "$oid": "681e000ca67dcb9775f12a81"
@@ -41,15 +44,15 @@
   "_id": {
     "$oid": "681c9af49137e6881f559a8e"
   },
-  "title": "Neuromancer",
-  "description": "A cyberpunk classic about a washed-up hacker hired for one last job.",
-  "author": "William Gibson",
+  "title": "Plastic",
+  "description": "A bold and imaginative dystopian debut exploring identity, technology, and the performance of self in a synthetic world.",
+  "author": "Scott Guild\"",
   "genres": [
-    "science fiction",
-    "cyberpunk"
+    "Dystopian",
+    "Speculative"
   ],
-  "image": "neoromancer-design-Alex-Trochut.jpg",
-  "published_year": 1984,
+  "image": "https://ineedabookcover.com/wp-content/uploads/2024/09/plastic-a-novel.jpg",
+  "published_year": 2024,
   "reviews": [
     {
       "$oid": "681e006da67dcb9775f12a87"
@@ -61,14 +64,15 @@
   "_id": {
     "$oid": "681c9b009137e6881f559a92"
   },
-  "title": "Educated",
-  "description": "A memoir about a woman who escapes a survivalist family to earn a PhD from Cambridge.",
-  "author": "Tara Westover",
+  "title": "Three Novels",
+  "description": "A beautifully crafted volume gathering three of Yuri Herrera's era-defining novellas—Kingdom Cons, Signs Preceding the End of the World, and The Transmigration of Bodies—exploring themes of power, migration, and mortality through mythic and poetic storytelling.",
+  "author": "Yuri Herrera",
   "genres": [
-    "memoir"
+    "Literary",
+    "Latin American"
   ],
-  "image": "educated-illo-Patrik-Svensson.jpg",
-  "published_year": 2018,
+  "image": "https://ineedabookcover.com/wp-content/uploads/2023/03/TomEtherington-2.jpg",
+  "published_year": 2021,
   "reviews": [
     {
       "$oid": "681e0128a67dcb9775f12a96"
