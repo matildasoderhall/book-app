@@ -39,25 +39,6 @@
 
     <Datatable :columns="columns" :rows="books" />
 
-
-    <!-- <table class="book-table">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Genres</th>
-          <th>Published</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="book in books" :key="book.id">
-          <td>{{ book.title }}</td>
-          <td>{{ book.author }}</td>
-          <td>{{ book.genres.join(', ') }}</td>
-          <td>{{ book.published_year }}</td>
-        </tr>
-      </tbody>
-    </table> -->
   </div>
 </template>
 
