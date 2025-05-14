@@ -1,52 +1,57 @@
 <script setup lang="ts">
-    import MainHeader from "@/fixtures/MainHeader.vue";
+  import AdminHeader from "@/fixtures/AdminHeader.vue";
   import { onMounted, ref } from "vue";
-  import { RouterLink } from "vue-router";
+  import { IBook } from '@/types/IBooks'
 
 
-const newBook = ref({
-  title: '',
-  description: '',
-  author: '',
-  genres: [],
-  image: '',
-  published_year: 0
-});
+  const books = ref<IBook[]>([]);
 
 
-const genreInput = ref('');
+  const newBook = ref<IBook>({
+    title: '',
+    description: '',
+    author: '',
+    genres: [],
+    image: '',
+    published_year: 0,
+    id: '',
+    _id: ''
+  });
+
+  const genreInput = ref('');
 
 
-const createBook = async () => {
+  const createBook = async () => {
 
-  newBook.value.genres = genreInput.value.split(',').map(g => g.trim()).filter(g => g !== '');
+    newBook.value.genres = genreInput.value.split(',').map(g => g.trim()).filter(g => g !== '');
 
-  try {
+    try {
 
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
 
-    // Send a POST request to the backend API with the book data
-    const response = await fetch(import.meta.env.VITE_API_URL + 'books', {
-      method: 'POST',
-      credentials: 'include',
-      body: JSON.stringify(newBook.value),
-      headers: myHeaders
-    });
+      // Send a POST request to the backend API with the book data
+      const response = await fetch(import.meta.env.VITE_API_URL + 'books', {
+        method: 'POST',
+        credentials: 'include',
+        body: JSON.stringify(newBook.value),
+        headers: myHeaders
+      });
 
 
-    const result = await response.json();
-    console.log('Book created:', result);
-  } catch (error) {
+      const result = await response.json();
+      console.log('Book created:', result);
+    } catch (error) {
 
-    console.error('Error creating book:', error);
-  }
-};
+      console.error('Error creating book:', error);
+    }
+  };
 </script>
 
 <template>
+  <AdminHeader title="Add book"/>
+
   <div class="page-wrapper">
-    <MainHeader title="Add book"/>
 
     <form @submit.prevent="createBook" class="book-form">
       <label>

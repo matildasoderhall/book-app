@@ -1,8 +1,7 @@
 <script setup lang="ts">
-  import { useUserStore } from "@/stores/user";
   import { RouterLink, useRouter } from "vue-router";
   import logo from "@/assets/StoryStack_logo_eggshell.svg";
-
+  import { useUserStore } from "@/stores/user";
 
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -18,6 +17,7 @@
     useStore.$reset();
     router.push('/');
   }
+
   defineProps({
     title: {
       type: String,
@@ -32,17 +32,25 @@
       <RouterLink to="/">
         <img class="logo" :src="logo" alt="Vue logo" height="30">
       </RouterLink>
+
       <nav>
-        <RouterLink to="/admin/users" class="router-link">Admin</RouterLink>
-        <template v-if="useStore.username">
-          <button @click="logout" class="router-link button-link">Logout</button>
-        </template>
-        <template v-else>
-          <RouterLink to="/login" class="router-link">Login/Register</RouterLink>
-        </template>
+      <RouterLink to="/" class="router-link">Home</RouterLink>
+      <RouterLink to="/admin/users" class="router-link">Admin</RouterLink>
+      <template v-if="useStore.username">
+        <button @click="logout" class="router-link button-link">Logout</button>
+      </template>
+      <template v-else>
+        <RouterLink to="/login" class="router-link">Login/Register</RouterLink>
+      </template>
+
       </nav>
     </div>
-    <h1>{{ title }}</h1>
+    <nav class="admin-nav-links">
+      <RouterLink to="/admin/users" class="router-link">Users</RouterLink>
+      <RouterLink to="/admin/books" class="router-link">Books</RouterLink>
+      <RouterLink to="/admin/add-book" class="router-link">Create Books</RouterLink>
+    </nav>
+    <h1 class="green">{{ title }}</h1>
   </header>
 </template>
 
@@ -74,7 +82,21 @@
   }
 }
 
+.admin-nav-links {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  column-gap: 20px;
+  margin-inline: 20px;
+  margin-top: 10px;
+  .router-link {
+    grid-column: span 2;
+    color: $delft-blue-color;
+    font-weight: 700;
+  }
+
+}
+
 h1 {
-  padding-inline: 3.5rem;
+  padding-inline: 9rem;
 }
 </style>

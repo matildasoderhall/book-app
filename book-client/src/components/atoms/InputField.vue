@@ -3,8 +3,10 @@ import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps<{
   modelValue: string;
-	placeholder: string;
-	type?: 'text' | 'radio' | 'checkbox' | 'date' | 'password';
+	placeholder?: string;
+	type?: 'text' | 'radio' | 'checkbox' | 'date' | 'password' | 'number';
+  min?: number;
+  max?: number;
 }>();
 
 const emit = defineEmits<{
@@ -12,7 +14,7 @@ const emit = defineEmits<{
 }>();
 
 const onInput = (event: Event) => {
-  const target = event.target as HTMLInplutElement;
+  const target = event.target as HTMLInputElement;
   emit('update:modelValue', target.value);
 };
 
@@ -24,6 +26,8 @@ const onInput = (event: Event) => {
   :placeholder="placeholder"
   :value="modelValue"
   @input="onInput"
+  :min="min"
+  :max="max"
   />
 </template>
 

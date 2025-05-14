@@ -1,10 +1,14 @@
 <script setup lang="ts">
-  import MainHeader from "@/fixtures/MainHeader.vue";
   import { onMounted, ref } from "vue";
-  import { RouterLink } from "vue-router";
+  import { IBook } from '@/types/IBooks'
+  import AdminHeader from "@/fixtures/AdminHeader.vue";
+  import Datatable from "@/components/DataTable.vue";
+
+
+  const books = ref<IBook[]>([]);
 
   const API_URL = import.meta.env.VITE_API_URL
-  const books = ref([]);
+
   const searchQuery = ref('');
 
   onMounted(async () => {
@@ -23,26 +27,26 @@
     alert('Query:' + searchQuery.value);
   }
 
+  const columns = ['Title', 'Author', 'Genres', 'Published_year'];
+
 </script>
 
 
 
 <template>
+  <AdminHeader title="Admin Book Overview"/>
   <div class="page-wrapper">
-    <MainHeader title="Admin Book Overview"/>
 
-    <form id="" @submit.prevent="searchBooks">
-      <input type="text" placeholder="Search" v-model="searchQuery">
-      <button>Submit</button>
-    </form>
+    <Datatable :columns="columns" :rows="books" />
 
-    <table class="book-table">
+
+    <!-- <table class="book-table">
       <thead>
         <tr>
           <th>Title</th>
           <th>Author</th>
           <th>Genres</th>
-          <th>Created</th>
+          <th>Published</th>
         </tr>
       </thead>
       <tbody>
@@ -50,10 +54,10 @@
           <td>{{ book.title }}</td>
           <td>{{ book.author }}</td>
           <td>{{ book.genres.join(', ') }}</td>
-          <td>{{ book.created_at }}</td>
+          <td>{{ book.published_year }}</td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
   </div>
 </template>
 
@@ -87,7 +91,7 @@
 
   th,
   td {
-    text-align: left; // 👈 make sure everything is left-aligned
+    text-align: left;
     padding: 0.75rem;
     border: 1px solid #ddd;
     font-size: 1rem;

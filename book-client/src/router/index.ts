@@ -5,6 +5,8 @@ import BookView from '@/views/BookView.vue'
 import UserView from '@/views/UserView.vue'
 import AdminBooksView from '@/views/AdminBooksView.vue'
 import AdminCreateBooksView from '@/views/AdminCreateBooksView.vue'
+import { useUserStore } from '@/stores/user'
+
 import RegisterView from '@/views/RegisterView.vue'
 
 const router = createRouter({
@@ -29,16 +31,19 @@ const router = createRouter({
       path: '/admin/users',
       name: 'admin users',
       component: UserView,
+      meta: {requiresAdmin: true}
     },
     {
-      path: '/admin-books',
+      path: '/admin/books',
       name: 'admin-books',
       component: AdminBooksView,
+      meta: {requiresAdmin: true}
     },
     {
-      path: '/admin-add-book',
-      name: 'admin-add-book',
+      path: '/admin/add-book',
+      name: 'add-book',
       component: AdminCreateBooksView,
+      meta: {requiresAdmin: true}
     },
     {
       path: '/register',
@@ -48,4 +53,19 @@ const router = createRouter({
   ]
 })
 
-export default router
+router.beforeEach(async (to, from, next) => {
+  const userStore = useUserStore();
+
+  if (!userStore.isLoaded) {
+    await userStore.fetchUser();
+  }
+
+  if (to.meta.requiresAdmin && !userStore.is_admin) {
+    alert("Admin access only");
+    next('/login')
+  }
+
+  next();
+});
+
+export default router;
