@@ -40,9 +40,17 @@
       </nav>
     </div>
     <nav class="admin-nav-links">
-      <RouterLink to="/admin/users" class="router-link">Users</RouterLink>
-      <RouterLink to="/admin/books" class="router-link">Books</RouterLink>
-      <RouterLink to="/admin/add-book" class="router-link">Create Books</RouterLink>
+      <ul>
+        <li>
+          <RouterLink to="/admin/users" class="router-link">Users</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/admin/books" class="router-link">Books</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/admin/add-book" class="router-link">Create Books</RouterLink>
+        </li>
+      </ul>
     </nav>
   </header>
 </template>
@@ -76,15 +84,29 @@
 }
 
 .admin-nav-links {
+
+  padding-inline: 20px;
+  padding-block: 10px;
+  background-color: white;
+  ul {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   column-gap: 20px;
-  margin-inline: 20px;
-  margin-top: 10px;
+  padding: 0;
+  margin: 0;
+  }
+  li {
+    list-style: none;
+  }
+
   .router-link {
     grid-column: span 2;
     color: $delft-blue-color;
     font-weight: 700;
+
+    &:hover {
+      color: $brown-sugar-color;
+    }
   }
 
 }
