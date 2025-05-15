@@ -35,7 +35,7 @@ body{
         background-color: white;
         padding: 0.5rem;
         display: flex;
-        margin: 1rem;
+        margin-block: 1rem;
         color: $jet-color;
         border-radius: 4px;
 

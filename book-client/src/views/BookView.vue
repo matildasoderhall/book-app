@@ -95,21 +95,18 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-.button {
-    margin: 1rem;
-}
+
 .review-wrapper {
   background-color: white;
-  padding: 1rem;
-  margin: 1rem;
   border-radius: 4px;
+  padding: 1rem;
   color: $jet-color;
 }
 
 .createReview {
   background-color: white;
   padding: 1rem;
-  margin: 1rem;
   border-radius: 4px;
+  margin-bottom: 1rem;
 }
 </style>

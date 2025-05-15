@@ -32,8 +32,8 @@
 <template>
   <MainHeader title="Book List"/>
   <main class="page-wrapper">
-
-     <section id="books">
+    <h1>View all our stacked books</h1>
+    <section id="books">
       <SmallCard v-for="book in books" :key="book.id" :book="book" />
     </section>
 
@@ -43,9 +43,6 @@
 
 <style lang="scss" scoped>
 
-.page-wrapper {
-	margin: 2rem;
-}
 
 #books {
   display: grid;
