@@ -65,7 +65,7 @@
 </script>
 
 <template>
-  <MainHeader title="Login"/>
+  <MainHeader/>
   <main>
     <form @submit.prevent="handleLogin">
       <h1>Login</h1>
@@ -91,7 +91,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 400px);
 }
 
 form {
