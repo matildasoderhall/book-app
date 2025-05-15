@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import MainHeader from '@/fixtures/MainHeader.vue';
 import { onMounted, ref } from "vue";
-import { RouterLink, useRoute } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 import BigCard from "../components/BigCard.vue"
 import PrimaryButton from '@/components/atoms/PrimaryButton.vue';
 import ReviewList from '@/components/ReviewList.vue';
 import ReviewForm from '@/components/ReviewForm.vue';
+import { useUserStore } from '@/stores/user';
 
 const API_URL = import.meta.env.VITE_API_URL
+
+const useStore = useUserStore();
 
 interface Review {
   _id: string;
@@ -67,7 +70,12 @@ v-if="book"
 
 <section class="createReview">
     <h3>Create review</h3>
-    <ReviewForm @submitted="fetchBook"></ReviewForm>
+    <template v-if="useStore.username">
+      <ReviewForm @submitted="fetchBook"></ReviewForm>
+    </template>
+    <template v-else>
+      <RouterLink to="/login">Log in to submit a review</RouterLink>
+    </template>
 </section>
 
 <section v-if="book?.reviews.length" class="review-wrapper">
