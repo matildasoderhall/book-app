@@ -18,12 +18,6 @@
     router.push('/');
   }
 
-  defineProps({
-    title: {
-      type: String,
-      required: true
-    }
-  })
 </script>
 
 <template>
@@ -50,7 +44,6 @@
       <RouterLink to="/admin/books" class="router-link">Books</RouterLink>
       <RouterLink to="/admin/add-book" class="router-link">Create Books</RouterLink>
     </nav>
-    <h1 class="green">{{ title }}</h1>
   </header>
 </template>
 
@@ -94,9 +87,5 @@
     font-weight: 700;
   }
 
-}
-
-h1 {
-  padding-inline: 9rem;
 }
 </style>
