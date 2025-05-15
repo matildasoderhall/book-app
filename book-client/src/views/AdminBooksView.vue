@@ -35,11 +35,11 @@
 
 <template>
   <AdminHeader title="Admin Book Overview"/>
-  <div class="page-wrapper">
+  <main class="page-wrapper">
 
     <Datatable :columns="columns" :rows="books" />
 
-  </div>
+  </main>
 </template>
 
 

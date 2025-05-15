@@ -51,7 +51,7 @@
 <template>
   <AdminHeader title="Add book"/>
 
-  <div class="page-wrapper">
+  <main class="page-wrapper">
 
     <form @submit.prevent="createBook" class="book-form">
       <label>
@@ -80,7 +80,7 @@
 
       <button type="submit">Add book to database</button>
     </form>
-  </div>
+  </main>
 </template>
 
 <style scoped lang="scss">

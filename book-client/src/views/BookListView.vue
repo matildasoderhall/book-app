@@ -31,13 +31,13 @@
 
 <template>
   <MainHeader title="Book List"/>
-  <div class="page-wrapper">
+  <main class="page-wrapper">
 
      <section id="books">
       <SmallCard v-for="book in books" :key="book.id" :book="book" />
     </section>
 
-  </div>
+  </main>
 </template>
 
 
