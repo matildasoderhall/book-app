@@ -21,12 +21,15 @@
 <template>
   <AdminHeader title="Users"/>
   <main>
-    <div class="table-container">
-    <DataTable
-      :columns="columns"
-      :rows="rows"
-    />
-  </div>
+    <div class="content-container">
+      <h1>All users</h1>
+      <div class="table-container">
+        <DataTable
+          :columns="columns"
+          :rows="rows"
+        />
+      </div>
+    </div>
   </main>
 
 
@@ -36,9 +39,11 @@
 main {
   display: flex;
   justify-content: center;
-}
-.table-container {
   padding-inline: 3.5rem;
-  max-width: 1000px;
 }
+
+.table-container {
+  min-width: 1000px;
+}
+
 </style>
