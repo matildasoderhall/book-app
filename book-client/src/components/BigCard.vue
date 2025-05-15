@@ -21,7 +21,7 @@
     <section class="book-section">
         <img :src="image" class="book-cover">
         <div class="text-section">
-            <h2>{{ title }}</h2>
+            <h1>{{ title }}</h1>
             <span>by {{ author }}, {{ published_year }}</span>
             <p class="description">{{ description }}</p>
             <p>Genres: {{ genres.join(', ') }} </p>
