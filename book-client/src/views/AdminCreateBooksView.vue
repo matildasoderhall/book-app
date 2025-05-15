@@ -85,6 +85,7 @@
   </main>
 </template>
 
+
 <style scoped lang="scss">
 main {
   display: flex;
