@@ -17,7 +17,7 @@ interface Review {
   name: string;
   content: string;
   rating: number;
-  created_at: Date;
+  created_at: string;
 }
 
 interface Book {
@@ -59,7 +59,7 @@ onMounted(async () => {
   <RouterLink to="/" class="button">
       <PrimaryButton buttonLabel="Back"></PrimaryButton>
   </RouterLink>
-  
+
   <BigCard
   v-if="book"
   :image="book.image"
@@ -68,7 +68,7 @@ onMounted(async () => {
   :published_year="book.published_year"
   :description="book.description"
   :genres="book.genres"></BigCard>
-  
+
   <section class="createReview">
       <h2>Create review</h2>
       <template v-if="useStore.username">
@@ -78,7 +78,7 @@ onMounted(async () => {
         <RouterLink to="/login">Log in to submit a review</RouterLink>
       </template>
   </section>
-  
+
   <section v-if="book?.reviews.length" class="review-wrapper">
       <h2>Reviews</h2>
       <ReviewList
