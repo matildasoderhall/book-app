@@ -12,7 +12,10 @@
   const logout = async ()  => {
     await fetch(API_URL + 'auth/logout', {
       method: 'POST',
-      credentials: 'include'
+      credentials: 'include',
+      headers: {
+        'Content-Type': "application/json"
+      }
     });
 
     useStore.$reset();
