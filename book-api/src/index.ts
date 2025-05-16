@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json()); // This specific middleware parses JSON string to Javascript Object
 app.use(cookieParser()); // This specific middleware parses Cookies
 app.use(cors({
-  origin: 'http://localhost:5173',         // This makes the Express server except request from other domains
+  origin: 'https://book-app-api-one.vercel.app',         // This makes the Express server except request from other domains
   credentials: true    // Allows cookies sent to this API
 }));        
 
