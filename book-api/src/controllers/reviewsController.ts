@@ -19,8 +19,8 @@ export const fetchReview = async (req: Request, res: Response) => {
     
      // makes sure the ID is in the correct format
     if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ error: "Invalid ID format" });
-
+      res.status(400).json({ error: "Invalid ID format" });
+      return;
     };
     try {
       const review = await Reviews.findById(id)
@@ -49,12 +49,16 @@ export const createReview = async (req: Request, res: Response) => {
     }
     //checks valid bookId format
     if (!mongoose.Types.ObjectId.isValid(bookId)) {
-        return res.status(400).json({ error: "Invalid bookId format" });
+        res.status(400).json({ error: "Invalid bookId format" });
+        return;
       }
 
     try {
         const book = await Book.findById(bookId);
-        if (!book) return res.status(404).json({ error: "Book not found" });
+        if (!book) {
+          res.status(404).json({ error: "Book not found" });
+          return;
+        };
 
       const newReview = new Review({
         name,
@@ -87,7 +91,8 @@ export const updateReview = async (req: Request, res: Response) => {
     }
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ error: "Invalid ID format"})
+        res.status(400).json({ error: "Invalid ID format"})
+        return;
     }
 
     try {
@@ -98,7 +103,8 @@ export const updateReview = async (req: Request, res: Response) => {
             //which in this case means that the user only is allowed to update the rating between 1-5
         );
         if (!updatedReview) {
-            return res.status(404).json({ error: "Review not found"});
+            res.status(404).json({ error: "Review not found"});
+            return;
         };
 
         res.status(200).json({ message: "Review updated", review: updatedReview})
@@ -108,7 +114,8 @@ export const updateReview = async (req: Request, res: Response) => {
         //if the error is because of the fact that the rating is not between 1-5,
         //throw a 400 status code instead of 500
         if (error instanceof mongoose.Error.ValidationError) {
-            return res.status(400).json({ error: error.message });
+            res.status(400).json({ error: error.message });
+            return;
           }
 
         const message = error instanceof Error ? error.message : "Unknown error";
@@ -120,7 +127,8 @@ export const deleteReview = async (req: Request, res: Response) => {
     const id = req.params.id;
   
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ error: "Invalid ID format" });
+      res.status(400).json({ error: "Invalid ID format" });
+      return;
     }
   
     try {
@@ -128,7 +136,8 @@ export const deleteReview = async (req: Request, res: Response) => {
       
   
       if (!review) {
-        return res.status(404).json({ message: "Review not found" });
+        res.status(404).json({ message: "Review not found" });
+        return;
       };
 
       await Book.findByIdAndUpdate(review.book, {
