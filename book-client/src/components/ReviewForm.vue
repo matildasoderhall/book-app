@@ -97,21 +97,18 @@ onMounted ( async() => {
 
 <style lang="scss" scoped>
 
-.form-section {
+  .form-section {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 
-    label{
+  .rating-input {
+    width: 18rem;
+  }
 
-        .rating-input {
-            width: 18rem;
-        }
-
-        span {
-            color: red;
-        }
-    }
+  span {
+    color: red;
+  }
 }
 
 
