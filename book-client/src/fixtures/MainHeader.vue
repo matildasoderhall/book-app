@@ -17,6 +17,7 @@
 
     useStore.$reset();
     router.push('/');
+    console.log('You have been logged out')
   }
 </script>
 
