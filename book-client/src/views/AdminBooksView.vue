@@ -35,19 +35,26 @@
 
 <template>
   <AdminHeader title="Admin Book Overview"/>
-  <div class="page-wrapper">
-
-    <Datatable :columns="columns" :rows="books" />
-
-  </div>
+  <main>
+    <div>
+      <h1>All books</h1>
+      <div class="table-wrapper">
+        <Datatable :columns="columns" :rows="books" />
+      </div>
+    </div>
+  </main>
 </template>
 
 
 <style scoped lang="scss">
-.page-wrapper {
-  padding: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
+main {
+  display: flex;
+  justify-content: center;
+  padding-inline: 3.5rem;
+}
+
+.table-wrapper {
+  min-width: 1000px;
 }
 
 .search-form {

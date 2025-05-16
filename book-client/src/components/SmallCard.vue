@@ -14,7 +14,7 @@ defineProps<{book: IBook}>()
     <div class="book-content">
       <h3>{{ book.title }} by {{ book.author }}</h3>
       <p>
-        Published {{ book.published_year }}. <br />
+        Published {{ book.published_year }} <br />
         Genres: {{ book.genres.join(', ') }}
       </p>
       <div class="book-link">

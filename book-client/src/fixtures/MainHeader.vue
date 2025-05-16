@@ -18,12 +18,6 @@
     useStore.$reset();
     router.push('/');
   }
-  defineProps({
-    title: {
-      type: String,
-      required: true
-    }
-  })
 </script>
 
 <template>
@@ -42,7 +36,6 @@
         </template>
       </nav>
     </div>
-    <h1>{{ title }}</h1>
   </header>
 </template>
 
@@ -72,9 +65,5 @@
     text-decoration: none;
     color: $eggshell-color;
   }
-}
-
-h1 {
-  padding-inline: 3.5rem;
 }
 </style>

@@ -2,7 +2,12 @@
 import InputField from '@/components/atoms/InputField.vue';
 import PrimaryButton from '@/components/atoms/PrimaryButton.vue';
 import MainHeader from '@/fixtures/MainHeader.vue';
+import { useUserStore } from '@/stores/user';
 import { reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+  const useStore = useUserStore();
+  const router = useRouter();
 
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -38,17 +43,31 @@ import { reactive, ref } from 'vue';
         username: registerValues.username,
         password: registerValues.password,
       }),
-    })
+    });
 
     if (!response.ok) {
       throw new Error('Invalid credentials or server error');
+    }
+
+    const loginResponse = await fetch(API_URL + 'auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(registerValues),
+    });
+
+    if (!loginResponse.ok) {
+      throw new Error('Auto-login failed');
     }
 
     const data = await response.json()
     const token = data.token
 
     localStorage.setItem('token', token)
-    window.location.href = '/login'
+
+    await useStore.fetchUser();
+
+    router.push('/')
     console.log('New user has been registred');
     } catch (error) {
       console.error('Registration failed:', error)
@@ -85,7 +104,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 400px);
 }
 
 form {
@@ -107,6 +125,7 @@ form {
     margin-top: 0.2rem;
   }
 }
+
 
 .login {
   align-self: flex-end;

@@ -65,10 +65,10 @@
 </script>
 
 <template>
-  <MainHeader title="Login"/>
+  <MainHeader/>
   <main>
+    <h1>Login</h1>
     <form @submit.prevent="handleLogin">
-      <h1>Login</h1>
       <div class="login-container">
         <div>
           <InputField id="username" label="Username" type="text" placeholder="Username" v-model="loginValues.username"/>
@@ -89,9 +89,9 @@
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 400px);
 }
 
 form {

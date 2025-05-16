@@ -19,7 +19,7 @@
       "$oid": "6821f43361cc68aafee3e986"
     }
   ],
-  "__v": 2
+  "__v": 6
 },
 {
   "_id": {
@@ -46,7 +46,7 @@
   },
   "title": "Plastic",
   "description": "A bold and imaginative dystopian debut exploring identity, technology, and the performance of self in a synthetic world.",
-  "author": "Scott Guild\"",
+  "author": "Scott Guild",
   "genres": [
     "Dystopian",
     "Speculative"
@@ -58,7 +58,7 @@
       "$oid": "681e006da67dcb9775f12a87"
     }
   ],
-  "__v": 1
+  "__v": 14
 },
 {
   "_id": {
@@ -78,5 +78,5 @@
       "$oid": "681e0128a67dcb9775f12a96"
     }
   ],
-  "__v": 1
+  "__v": 3
 }]

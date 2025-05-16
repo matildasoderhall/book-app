@@ -51,48 +51,53 @@
 <template>
   <AdminHeader title="Add book"/>
 
-  <div class="page-wrapper">
+  <main>
+    <div>
+      <h1>Add a new book</h1>
+      <form @submit.prevent="createBook" class="book-form">
+        <label>
+          <input type="text" v-model="newBook.title" placeholder="Title" required />
+        </label>
 
-    <form @submit.prevent="createBook" class="book-form">
-      <label>
-        <input type="text" v-model="newBook.title" placeholder="Title" required />
-      </label>
+        <label>
+          <input type="text" v-model="newBook.author" required placeholder="Author"/>
+        </label>
 
-      <label>
-        <input type="text" v-model="newBook.author" required placeholder="Author"/>
-      </label>
+        <label>
+          <textarea v-model="newBook.description" required placeholder="Description"></textarea>
+        </label>
 
-      <label>
-        <textarea v-model="newBook.description" required placeholder="Description"></textarea>
-      </label>
+        <label>
+          <input type="text" v-model="genreInput" required placeholder="Genres"/>
+        </label>
 
-      <label>
-        <input type="text" v-model="genreInput" required placeholder="Genres"/>
-      </label>
+        <label>
+          <input type="text" v-model="newBook.image" required placeholder="Link to book cover image"/>
+        </label>
 
-      <label>
-        <input type="text" v-model="newBook.image" required placeholder="Link to book cover image"/>
-      </label>
+        <label>
+          <input type="number" v-model.number="newBook.published_year" required placeholder="Year published"/>
+        </label>
 
-      <label>
-        <input type="number" v-model.number="newBook.published_year" required placeholder="Year published"/>
-      </label>
-
-      <button type="submit">Add book to database</button>
-    </form>
-  </div>
+        <button type="submit">Add book to database</button>
+      </form>
+    </div>
+  </main>
 </template>
 
+
 <style scoped lang="scss">
-.page-wrapper {
-	margin: 2rem;
+main {
+  display: flex;
+  justify-content: center;
+  padding-inline: 3.5rem;
 }
 
 .book-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 500px;
+  min-width: 500px;
   margin: 2rem auto;
   padding: 2rem;
   background: #fdfdfd;
