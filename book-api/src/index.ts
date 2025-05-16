@@ -16,6 +16,7 @@ app.use(cors({
 }));        
 
 
+
 // // Routes
 import userRouter from './routes/users'
 app.use('/users', userRouter)
