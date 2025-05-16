@@ -18,6 +18,11 @@ The **BookStack** is a user-friendly web application for exploring, managing, an
   - Create, update, and delete books.
   - Manage user accounts.
   - Moderate and remove inappropriate reviews.
+ 
+## 🚀 Live Demo
+
+👉 [https://book-app-client-flax.vercel.app](https://book-app-client-flax.vercel.app)
+
 
 ## ⚙️ Tech Stack
 
@@ -41,9 +46,23 @@ The **BookStack** is a user-friendly web application for exploring, managing, an
 **Deployment**  
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
-## 🚀 Live Demo
 
-👉 [https://book-app-client-flax.vercel.app](https://book-app-client-flax.vercel.app)
+## 📸 Screenshots
+![image](https://github.com/user-attachments/assets/bca1c366-448f-4c6b-be0d-f601f0de88ff)
+![image](https://github.com/user-attachments/assets/3a76c99f-d430-43f8-b822-5cef42804b49)
+![image](https://github.com/user-attachments/assets/cabdfa7f-db64-4025-a0f0-2ac851a12c97)
+
+
+
+
+
+## Authors
+
+[@matildasoderhall](https://github.com/matildasoderhall)
+
+[@karinHson](https://github.com/KarinHson)
+
+[@carl4000](https://github.com/Carl4000)
 
 ---
 
