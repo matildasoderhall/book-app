@@ -1,6 +1,6 @@
 # 📚 StoryStack – A Simple Full-Stack Book Management Platform
 
-The **BookStack** is a user-friendly web application for exploring, managing, and reviewing books. It offers both general user features and admin-level tools, with a focus on simplicity, accessibility, and a clean interface.
+The **StoryStack** is a user-friendly web application for exploring, managing, and reviewing books. It offers both general user features and admin-level tools, with a focus on simplicity, accessibility, and a clean interface.
 
 ## 🌟 Features
 
